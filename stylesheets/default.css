@@ -1,15 +1,16 @@
 BODY, HTML
 {
 	background: #0E7DEB;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
+    margin-top: -10px;
 }
 header, footer, aside, nav, article
 {
     display: block;
 }
 a {
-    color: #005bb7;
+    color: #074481;
     text-decoration: none;
     font-weight: normal;
 }
@@ -22,8 +23,9 @@ hr
 	border-color: #005bb7;
     border-style: dotted;
     border-width: 2px;
-    border-bottom-style:none;
-	width: 100%;
+    border-bottom-style: none;
+    margin: 0 auto;
+	width: 98%;
 }
 #wrap
 {
@@ -40,6 +42,8 @@ hr
 #nav
 {
 	background: #074481;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
 	width: 100%;
     height: 44px;
 	text-align: center;
@@ -83,12 +87,13 @@ hr
 }
 .post
 {
-	margin: 10px 10px 10px 0;
+	margin: 10px 10px 0 0;
 	background: #60AFFF;
-	border-radius: 10px;
-	padding: 5px 10px;
+	border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    padding: 5px 10px 10px 10px;
 	font-size: 16px;
-    box-shadow: 4px 4px 8px #004284;
+    box-shadow: 6px 6px 10px #004284;
 }
 .post h1
 {
@@ -99,6 +104,34 @@ hr
 {
 	font-size: 16px;
 	margin: 0 0 0 10px;
+}
+
+.comments
+{
+    margin: 0 10px 10px 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background: #60AFFF;
+    padding: 0 10px 10px 10px;    
+    clear: both;box-shadow: 6px 6px 10px #004284;
+}
+
+.comments h3 {
+    margin: 0;
+    padding-top: 5px;
+}
+
+.comments article
+{
+    padding: 3px;
+    border-radius: 5px;
+}
+
+.comments article:nth-child(2n+1)
+{
+    background: #88c4ff;
+    padding: 3px;
+    border-radius: 5px;
 }
 #sidebar
 {
@@ -113,9 +146,9 @@ hr
 	font-size: 16px;
 	margin: 10px 0 10px 10px;
 	border-radius: 10px;
-	padding: 5px 10px;
+	padding: 5px 10px 5px 10px;
     text-align: center;
-    box-shadow: 4px 4px 8px #004284;
+    box-shadow: 6px 6px 10px #004284;
 }
 .sidebox h1
 {
@@ -125,24 +158,23 @@ hr
 .sidebox ul
 {
     margin: 0 auto;
+    padding: 0;
 	list-style: none;
-}
-.sidebox ul li
-{
-    float: left;
 }
 .sidebox ul li a
 {
+    width: 100%;
+    padding: 2px;
     display: block;
+    text-align: center;
 }
 #footer
 {
-	background: #60AFFF;
+	background: #074481;;
 	width: 830px;
 	padding: 10px;
-	border-radius: 10px;
+	border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 	text-align: center;
 	float: left;
-	clear: both;
-    box-shadow: 4px 4px 8px #004284;
 }
