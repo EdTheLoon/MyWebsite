@@ -25,6 +25,8 @@ hr
     border-width: 2px;
     border-bottom-style: none;
     margin: 0 auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
 	width: 98%;
 }
 #wrap
@@ -35,7 +37,7 @@ hr
 #banner
 {
 	text-align: center;
-	background: #60AFFF;
+	background: #074481;
 	width: 100%;
 	height: 140px;
 }
@@ -87,11 +89,10 @@ hr
 }
 .post
 {
-	margin: 10px 10px 0 0;
+	margin: 10px 10px 10px 0;
 	background: #60AFFF;
-	border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-    padding: 5px 10px 10px 10px;
+	border-radius: 10px;
+    padding: 5px 10px 5px 10px;
 	font-size: 16px;
     box-shadow: 6px 6px 10px #004284;
 }
@@ -108,12 +109,12 @@ hr
 
 .comments
 {
-    margin: 0 10px 10px 0;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
     background: #60AFFF;
-    padding: 0 10px 10px 10px;    
-    clear: both;box-shadow: 6px 6px 10px #004284;
+    padding: 0 10px 0 10px;    
+    clear: both;
+    display: block;
 }
 
 .comments h3 {

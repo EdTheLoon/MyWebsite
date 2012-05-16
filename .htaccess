@@ -1,0 +1,7 @@
+Options +FollowSymLinks
+RewriteEngine on
+RewriteBase /
+RewriteRule ^temporary$|^temporary/$ temp5.html
+RewriteRule ^follow$|^follow/$ follow.php
+RewriteRule phpinfo.php index.html
+RewriteRule ^post/([0-9]+)$ post.php?pid=$1
