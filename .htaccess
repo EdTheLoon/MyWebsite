@@ -1,7 +1,21 @@
 Options +FollowSymLinks
 RewriteEngine on
 RewriteBase /
-RewriteRule ^temporary$|^temporary/$ temp5.html
-RewriteRule ^follow$|^follow/$ follow.php
-RewriteRule phpinfo.php index.html
-RewriteRule ^post/([0-9]+)$ post.php?pid=$1
+RewriteCond %{HTTP_HOST} ^edtheloon.com
+RewriteRule (.*) http://www.edtheloon.com/$1 [R=301]
+Redirect 301 /index.html http://www.edtheloon.com/home/
+RewriteRule ^temporary/?$ index.php [L]
+RewriteRule ^home/?$ index.php [L]
+RewriteRule ^blog/?$ blog.php [L]
+RewriteRule ^follow/?$ follow.php [L]
+RewriteRule ^projects/?$$ projects.php [L]
+RewriteRule ^about/?$ about.php [L]
+RewriteRule ^login/?$ login.php [L]
+RewriteRule ^register/?$ register.php [L]
+RewriteRule ^submit/post/?$ submitpost.php [L]
+RewriteRule ^edit/profile/?$ editprofile.php [L]
+RewriteRule ^edit/users/?$ editusers.php [L]
+RewriteRule ^logout/?$ logout.php [L]
+RewriteRule ^user/[a-z0-9]*/([0-9]*)/?$ user.php?pid=$1 [L]
+RewriteRule ^post/([0-9]+)/?$ post.php?pid=$1 [L]
+RewriteRule ^defaultsite$ temp5.html [L]

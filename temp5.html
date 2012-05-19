@@ -20,17 +20,17 @@
 			<header>
 				<h2>Banner</h2>
 			</header>
-			<p>A banner logo goes here.</p>
+			<p>A banner graphic goes here.</p>
 		</section>
 		
 		<!-- NAVIGATION -->
 		<nav id="nav">
 			<ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Follow</a></li>
-                <li><a href="#">Projects</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="/home/">Home</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/follow/">Follow</a></li>
+                <li><a href="/projects/">Projects</a></li>
+                <li><a href="/about/">About</a></li>
             </ul>
 		</nav>
 		
@@ -42,7 +42,7 @@
                         <h1>Blog Post Title 1</h1>
                         Posted on <time datetime="2012-05-01T16:00:00+0:00">
                         1st May 2012</time>	by <a href="#">Ed the Loon</a> -
-                        <a href="#comments1" onclick="showHide('comments1');">3 comments</a>
+                        <a href ='' onclick="showHide('comments1');">3 comments</a>
                     </header>
                     <hr>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
@@ -84,7 +84,7 @@
                         <h1>Blog Post Title 2</h1>
                         Posted on <time datetime="2012-05-01T16:00:00+0:00">
                         1st May 2012</time>	by <a href="#">Ed the Loon</a> -
-                        <a href="#comments2" onclick="showHide('comments2');">4 comments</a>
+                        <a href='' onclick="showHide('comments2');">4 comments</a>
                     </header>
                     <hr>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
@@ -137,11 +137,12 @@
 				</header>
 				<hr>
 				<ul>
-					<li><a href="#">Login</a></li>
-					<li><a href="#">Register</a></li>
-					<li><a href="#">Edit Profile</a></li>
-                    <li><a href="#">Add/Edit Users</a></li>
-					<li><a href="#">Logout</a></li>
+					<li><a href="/login/">Login</a></li>
+                    <li><a href="/register/">Register</a></li>
+                    <li><a href="/submit/post/">Submit Post</a></li>
+                    <li><a href="/edit/profile/">Edit Profile</a></li>
+                    <li><a href="/edit/users/">Add/Edit Users</a></li>
+                    <li><a href="/logout/">Logout</a></li>
 				</ul>
 			</section>
             <section class="sidebox">
@@ -169,17 +170,24 @@
 		</footer>
         <br>
 	</section>
-    <script type="text/javascript">        
+    <script type="text/javascript">
+        function hideComments() {
+            var comments = document.getElementsByClassName('comments');
+            var len = comments.length;
+            for (i = 0; i < len; i++) {
+                comments[i].style.display = 'none';
+            }
+        }
         function showHide(elid) {
             var el = document.getElementById(elid);
             if (el.style.display == 'none')
             {
-                el.style.display = 'block';
-            } else if (el.style.display == 'block')
-            {
+                el.style.display = 'block';                
+            } else {
                 el.style.display = 'none';
             }
         }
+        window.onload=hideComments();
     </script>
 </body>
 </html>
