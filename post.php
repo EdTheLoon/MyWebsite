@@ -1,4 +1,7 @@
-<!doctype html>
+<?php
+    session_start();
+?>
+<!DOCTYPE html>
 <html>
 <head>
     <title></title>
@@ -36,9 +39,9 @@
         <!-- END OF MAIN CONTENT -->
         
         <!-- SIDEBAR -->
-        <aside id="sidebar">
+        <section id="sidebar">
             <!-- USER CONTROLS -->
-            <section class="sidebox">
+            <nav class="sidebox">
                 <header>
                     <h1>User Controls</h1>
                 </header>
@@ -51,11 +54,11 @@
                     <li><a href="/edit/users/">Add/Edit Users</a></li>
                     <li><a href="/logout/">Logout</a></li>
                 </ul>
-            </section>
+            </nav>
             <!-- END OF USER CONTROLS -->
             
             <!-- WHO IS ONLINE -->
-            <section class="sidebox">
+            <div class="sidebox">
                 <header>
                     <h1>Who's online</h1>
                 </header>
@@ -65,18 +68,18 @@
                     <li>Daz</li>
                     <li>Steve</li>
                 </ul>
-            </section>
+            </div>
             <!-- END OF WHO IS ONLINE -->
             
             <!-- ADVERTISEMENT -->
-            <section class="sidebox" style="height: 600px;">
+            <div class="sidebox" style="height: 600px;">
                 <header>
                     <h1>Advertisement</h1>
                 </header>
                 <hr>
-            </section>
+            </div>
             <!-- END OF ADVERTISEMENT -->
-        </aside>
+        </section>
         <!-- END OF SIDEBAR -->
         
         <!-- FOOTER -->
@@ -87,27 +90,5 @@
         
     </section>
     <!-- END OF WRAPPER -->
-    
-    <!-- JAVASCRIPT -->
-    <script type="text/javascript">
-        function hideComments() {
-            var comments = document.getElementsByClassName('comments');
-            var len = comments.length;
-            for (i = 0; i < len; i++) {
-                comments[i].style.display = 'none';
-            }
-        }
-        function showHide(elid) {
-            var el = document.getElementById(elid);
-            if (el.style.display == 'none')
-            {
-                el.style.display = 'block';                
-            } else {
-                el.style.display = 'none';
-            }
-        }
-        window.onload=hideComments();
-    </script>
-    <!-- END OF JAVASCRIPT -->
 </body>
 </html>

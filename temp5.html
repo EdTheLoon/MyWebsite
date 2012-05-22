@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>
@@ -51,10 +51,10 @@
                     Proin metus odio, ultricies eu pharetra dictum, laoreet id
                     odio...
                 </article>
-                <section class="comments" id="comments1">
-                    <header>
-                        <h3>Comments</h3>
-                    </header>
+                <details class="comments" id="comments1">
+                    <summary>
+                        Comments
+                    </summary>
                     <article>
                         <header>
                             <a href="#">Daz</a> on <time datetime=
@@ -76,7 +76,7 @@
                         </header>
                         BOOOHOOO!
                     </article>
-                </section>
+                </details>
             </section>
             <section class="post">
                 <article>
@@ -93,10 +93,10 @@
                     Proin metus odio, ultricies eu pharetra dictum, laoreet id
                     odio...
                 </article>
-                <section class="comments" id="comments2">
-                    <header>
-                        <h3>Comments</h3>
-                    </header>
+                <details class="comments" id="comments2">
+                    <summary>
+                        Comments
+                    </summary>
                     <article>
                         <header>
                             <a href="#">Daz</a> on <time datetime=
@@ -125,27 +125,31 @@
                         </header>
                         You love it...
                     </article>
-                </section>
+                </details>
             </section>
         </section>
         
 		<!-- SIDEBAR -->
-		<aside id="sidebar">
-			<section class="sidebox">
-				<header>
-					<h1>User Controls</h1>
-				</header>
-				<hr>
-				<ul>
-					<li><a href="/login/">Login</a></li>
+        <section id="sidebar">
+            <!-- USER CONTROLS -->
+            <nav class="sidebox">
+                <header>
+                    <h1>User Controls</h1>
+                </header>
+                <hr>
+                <ul>
+                    <li><a href="/login/">Login</a></li>
                     <li><a href="/register/">Register</a></li>
                     <li><a href="/submit/post/">Submit Post</a></li>
                     <li><a href="/edit/profile/">Edit Profile</a></li>
                     <li><a href="/edit/users/">Add/Edit Users</a></li>
                     <li><a href="/logout/">Logout</a></li>
-				</ul>
-			</section>
-            <section class="sidebox">
+                </ul>
+            </nav>
+            <!-- END OF USER CONTROLS -->
+            
+            <!-- WHO IS ONLINE -->
+            <div class="sidebox">
                 <header>
                     <h1>Who's online</h1>
                 </header>
@@ -155,14 +159,19 @@
                     <li>Daz</li>
                     <li>Steve</li>
                 </ul>
-            </section>
-            <section class="sidebox" style="height: 600px;">
+            </div>
+            <!-- END OF WHO IS ONLINE -->
+            
+            <!-- ADVERTISEMENT -->
+            <div class="sidebox" style="height: 600px;">
                 <header>
                     <h1>Advertisement</h1>
                 </header>
                 <hr>
-            </section>
-		</aside>
+            </div>
+            <!-- END OF ADVERTISEMENT -->
+        </section>
+        <!-- END OF SIDEBAR -->
 		
 		<!-- FOOTER -->
 		<footer id="footer">
@@ -182,12 +191,14 @@
             var el = document.getElementById(elid);
             if (el.style.display == 'none')
             {
-                el.style.display = 'block';                
+                el.style.display = 'block';
+                return;
             } else {
                 el.style.display = 'none';
+                return;
             }
         }
-        window.onload=hideComments();
+        //window.onload=hideComments();
     </script>
 </body>
 </html>
