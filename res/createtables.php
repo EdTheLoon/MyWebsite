@@ -11,9 +11,9 @@
 	$query = "CREATE TABLE users
 	(
 		uid INT(7) NOT NULL AUTO_INCREMENT,
-		user VARCHAR(20),
+		user VARCHAR(20) UNIQUE,
 		pass VARCHAR(32),
-		email VARCHAR(50),
+		email VARCHAR(50) UNIQUE,
 		ip INT,
 		dt DATETIME,
 		validkey VARCHAR(7),

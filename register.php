@@ -1,33 +1,34 @@
 <?php
     session_start();
-    if (isset($_POST["submit"])) {
+    if (isset($_POST['submit'])) {
         require_once "res/db_config.php";
-        unset($_SESSION["success"], $_SESSION["err"]);
+        unset($_SESSION['success'], $_SESSION['err']);
         
-        $user = $_POST["username"];
-        $pass = $_POST["password"];
-        $email = $_POST["email"];
+        $user = $_POST['username'];
+        $pass = $_POST['password'];
+        $email = $_POST['email'];
         $to = $email;
-        $ip = ip2long($_SERVER["REMOTE_ADDR"]);
-        
-        $err = array();
+        $ip = ip2long($_SERVER['REMOTE_ADDR']);
         
         if (strlen($user) < 1 || strlen($user) > 20)
         {
-            $err[] = "Your username must be between 1 and 20 characters";
+            $_SESSION['err'] = "Your username must be between 1 and 20 characters";
 			header("Location: /register/");
+			exit;
         }
         
         if (preg_match("/[^a-z0-9]+/i", $user))
         {
-            $err[] = "Your username can only contain letters a-z and numbers 0-9";
+            $_SESSION['err'] = "Your username can only contain letters a-z and numbers 0-9";
 			header("Location: /register/");
+			exit;
         }
         
         if(!preg_match("/^[\.A-z0-9_\-\+]+[@][A-z0-9_\-]+([.][A-z0-9_\-]+)+[A-z]{1,4}$/", $email))
         {
-            $err[] = "Your email address is not valid";
+            $_SESSION['err'] = "Your email address is not valid";
 			header("Location: /register/");
+			exit;
         }
         
         $user = mysql_real_escape_string($user);
@@ -67,18 +68,13 @@
                 $headers = $headers . "From: Ed the Loon <noreply@edtheloon.com>" . "\r\n";
                 if (mail($to, $subject, $emailbody, $headers))
                 {
-                    $_SESSION["success"] = "The last step is to confirm your email address. Please check your inbox and spam folders";
+                    $_SESSION['success'] = "The last step is to confirm your email address. Please check your inbox and spam folders";
                 } else {                    
-                    $err[] = "There was a problem sending you a validation link";
+                    $_SESSION['err'] = "There was a problem sending you a validation link";
                 }
             } else if ($errno == 1062) {
-                $err[] = "Your username or email address is already in use on this site<br>";
+                $_SESSION['err'] = "Your username or email address is already in use on this site<br>";
             }
-        }
-        
-        if(count($err))
-        {
-            $_SESSION["err"] = implode("<br>", $err);
         }
         
         header("Location: /register/");
@@ -120,9 +116,9 @@
         <!-- MAIN CONTENT -->
         <section id="main">            
             <section class="post" style="text-align: center;">
-				<header><hgroup><h1>Register</h1><h2>Fill me in</h2></hgroup></header>
+				<header><h1>Register</h1>Fill me in</header>
                 <?php
-                    if (isset($_SESSION["success"]))
+                    if (isset($_SESSION['success']))
                     {
                         ?>
                             <article>
@@ -130,19 +126,19 @@
                                     <h1>Success!</h1>
                                 </header>
                                 <?php
-                                    echo $_SESSION["success"];
+                                    echo $_SESSION['success'];
                                 ?>
                             </article>
                         <?php
                     }
-                    if ($_SESSION["err"])
+                    if ($_SESSION['err'])
                     {
-						echo $_SESSION["err"];
+						echo $_SESSION['err'];
                     }
-                    if (!isset($_SESSION["success"]))
+                    if (!isset($_SESSION['success']))
                     {
                         ?>
-                        <form action="/register/" method="post">
+                        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                             <input name="username" type="text" placeholder="Username" maxlength="32" /><br>
                             <input name="email" type="email" placeholder="youremail@example.com" maxlength="255" /><br>
                             <input name="password" type="password" placeholder="Password" maxlength="32" /><br>
@@ -151,7 +147,7 @@
                         </form>
                         <?php
                     }
-                    unset($_SESSION["err"], $_SESSION["success"]);
+                    unset($_SESSION['err'], $_SESSION['success']);
                 ?>
             </section>
         </section>

@@ -1,5 +1,41 @@
 <?php
     session_start();
+	if (isset($_POST['submit'])) {
+		require_once "res/db_config.php";
+		unset($_SESSION['success'], $_SESSION['err']);
+		
+		$user = mysql_real_escape_string($_POST['username']);
+		$pass = $_POST['password'];
+		$pass = md5($pass, false);
+		
+		$query = "SELECT uid, user, pass, validated 
+				  FROM users
+				  WHERE user = '$user'
+				  AND pass = '$pass'";
+		
+		$result = mysql_query($query, $db_link);
+		$errno = mysql_errno($db_link);
+		
+		if($errno == 1329) { // No rows returned. Credentials are incorrect.
+			$_SESSION['err'] = "Username or password incorrect";
+			header("Location: /login/");
+		} else if($errno == 0) { // A row was returned. Credentials are correct.
+			$row = mysql_fetch_array($result);
+			$validated = $row['validated'];
+			if ($validated) {
+				$uid = $row['uid'];
+				$_SESSION['uid'] = $uid;
+				$_SESSION['success'] = "Successfully logged in";
+				header("Location: /home/");
+			} else {
+				$_SESSION['err'] = "Account not activated. You need to click the activation link you were sent by email";
+				header("Location: /login/");
+			}
+		} else {
+			$_SESSION['err'] = "An unknown error occured";
+			header("Location: /login/");
+		}
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,19 +72,22 @@
         <section id="main">
             <section class="post" style="text-align: center;">
                 <?php
-                    if (isset($_SESSION["success"])) {
-                        echo "<article><header><hgroup><h1>Activated!</h1><h2>" . 
-                              $_SESSION["success"] . "</h2></hgroup></header>
-                              Please login using the form below</article>";
+                    if (isset($_SESSION['err'])) {
+                        echo "<article><header><h1>Oops!</h1></header>" . $_SESSION['err'] . "</article>";
                     } else {
                         echo "<article><header><h1>Login</h1></header>Please login using the form below</article>";
+						echo "Error: " . $_SESSION['err'];
+						echo "Success: " . $_SESSION['success'];
                     }
                 ?>
-                <form action="processlogin.php" method="post">
-                    <input name="username" type="text" placeholder="Username" maxlength="20"/><br>
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                    <input name="username" type="text" placeholder="Username" maxlength="20" /><br>
                     <input name="password" type="password" placeholder="Password" /><br>
                     <input type="submit" name="submit" value="Login" />
                 </form>
+				<?php
+					unset($_SESSION['success'], $_SESSION['err']);
+				?>
             </section>
         </section>
         <!-- END OF MAIN CONTENT -->

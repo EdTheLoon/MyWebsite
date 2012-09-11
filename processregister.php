@@ -1,13 +1,13 @@
 <?php
     session_start();
-    if (isset($_POST["submit"])) {
+    if (isset($_POST['submit'])) {
         require "res/db_config.php";
-        unset($_SESSION["success"], $_SESSION["err"]);
+        unset($_SESSION['success'], $_SESSION['err']);
         
-        $user = $_POST["username"];
-        $pass = $_POST["password"];
-        $email = $_POST["email"];
-        $ip = $_SERVER["REMOTE_ADDR"];
+        $user = $_POST['username'];
+        $pass = $_POST['password'];
+        $email = $_POST['email'];
+        $ip = $_SERVER['REMOTE_ADDR'];
         
         $err = array();
         
@@ -41,7 +41,7 @@
             
             if ($result)
             {
-                $_SESSION["success"] = "The last step is to confirm your email address. Please check your inbox and spam folders";
+                $_SESSION['success'] = "The last step is to confirm your email address. Please check your inbox and spam folders";
             } else {
                 $err[] = "The username or email you used is already taken";
             }
@@ -49,7 +49,7 @@
         
         if(count($err))
         {
-            $_SESSION["err"] = implode("<br>", $err);
+            $_SESSION['err'] = implode("<br>", $err);
         }
         header("Location: /register/");
         exit;
