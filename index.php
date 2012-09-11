@@ -17,10 +17,18 @@
 				<section class="post">
 					<article>
 						<header>
-							<h1>Success!</h1>
+							<h1>You are now logged in.</h1>
 						</header>
 						<hr>
-						<?php echo $_SESSION['success']; ?>
+						You have successfully logged into my website. Feel free to take a look around,
+						read the blog posts, add your comments should you have any, change your password
+						or whatever else it is you want to do!<br>
+						<br>
+						This site is still under heavy development so if you notice any bugs or have any 
+						suggestions then please feel free to <a href="">Contact Me</a> so that I can 
+						resolve any issues and continue to improve my website!<br>
+						<br>
+						Thanks!
 					</article>
 				</section>
 			<?php

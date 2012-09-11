@@ -1,6 +1,8 @@
 <?php
     session_start();
 	session_destroy();
+	session_start();
+	$_SESSION['success'] = "You're now logged out! Come back soon!";
 	header("Location: /login/");
 ?>
 <!DOCTYPE html>
