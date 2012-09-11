@@ -2,38 +2,33 @@
     session_start();
 	if (isset($_POST['submit'])) {
 		require_once "res/db_config.php";
-		unset($_SESSION['success'], $_SESSION['err']);
+		unset($_SESSION['err'], $_SESSION['success']);
 		
+		// Retrieve information from posted form
 		$user = mysql_real_escape_string($_POST['username']);
-		$pass = $_POST['password'];
-		$pass = md5($pass, false);
+		$pass = md5($_POST['password'], false);
 		
-		$query = "SELECT uid, user, pass, validated 
-				  FROM users
-				  WHERE user = '$user'
-				  AND pass = '$pass'";
-		
+		$query = "SELECT uid, user, pass, validated FROM users WHERE user = '$user'";
 		$result = mysql_query($query, $db_link);
-		$errno = mysql_errno($db_link);
 		
-		if($errno == 1329) { // No rows returned. Credentials are incorrect.
-			$_SESSION['err'] = "Username or password incorrect";
-			header("Location: /login/");
-		} else if($errno == 0) { // A row was returned. Credentials are correct.
+		if ($result) {
 			$row = mysql_fetch_array($result);
-			$validated = $row['validated'];
-			if ($validated) {
-				$uid = $row['uid'];
-				$_SESSION['uid'] = $uid;
-				$_SESSION['success'] = "Successfully logged in";
+			$pass2 = $row['pass'];
+			$uid = $row['uid'];
+			
+			if ($pass == $pass2) {
+				$_SESSION['success'] = "You're now logged in!";
 				header("Location: /home/");
+				exit;
 			} else {
-				$_SESSION['err'] = "Account not activated. You need to click the activation link you were sent by email";
+				$_SESSION['err'] = "Incorrect password";
 				header("Location: /login/");
+				exit;
 			}
 		} else {
-			$_SESSION['err'] = "An unknown error occured";
+			$_SESSION['err'] = "Incorrect username";
 			header("Location: /login/");
+			exit;
 		}
 	}
 ?>
@@ -77,7 +72,7 @@
                     } else {
                         echo "<article><header><h1>Login</h1></header>Please login using the form below</article>";
 						echo "Error: " . $_SESSION['err'];
-						echo "Success: " . $_SESSION['success'];
+						echo "<br>Success: " . $_SESSION['success'];
                     }
                 ?>
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
