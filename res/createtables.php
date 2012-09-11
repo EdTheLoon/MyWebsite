@@ -10,39 +10,56 @@
 	// Create USERS table
 	$query = "CREATE TABLE users
 	(
-		uid INT(5) NOT NULL AUTO_INCREMENT,
-		PRIMARY KEY(uid),
+		uid INT(7) NOT NULL AUTO_INCREMENT,
 		user VARCHAR(20),
 		pass VARCHAR(32),
 		email VARCHAR(50),
 		ip INT,
 		dt DATETIME,
 		validkey VARCHAR(7),
-		validated BOOLEAN
+		validated BOOLEAN,
+		PRIMARY KEY (uid)
 	)";
 	
 	$result = mysql_query($query, $db_link);
 	if (!$result) {
-		die("Could not create users table: " . mysql_error());
+		die("Could not create users table: " . mysql_error() . "<br>");
 	} else {
-		echo "Users table created";
+		echo "Users table created<br>";
 	}
 	
-	// Create POST table
+	// Create POSTS table
+	$query = "CREATE TABLE posts
+	(
+		pid INT(7) NOT NULL AUTO_INCREMENT,
+		uid INT(3) NOT NULL,
+		date DATETIME,
+		content TEXT NOT NULL,
+		PRIMARY KEY (pid)
+	)";
 	
 	$result = mysql_query($query, $db_link);
 	if (!$result) {
-		die("Could not create user table: " . mysql_error());
+		die("Could not create posts table: " . mysql_error() . "<br>");
 	} else {
-		echo "User table created";
+		echo "Posts table created<br>";
 	}
-	// Create COMMENT table
+	// Create COMMENTS table
+	$query = "CREATE TABLE comments
+	(
+		cid INT(7) NOT NULL AUTO_INCREMENT,
+		pid INT(7) NOT NULL,
+		uid INT(7) NOT NULL,
+		date DATETIME,
+		content TEXT NOT NULL,
+		PRIMARY KEY (cid)
+	)";
 	
 	$result = mysql_query($query, $db_link);
 	if (!$result) {
-		die("Could not create user table: " . mysql_error());
+		die("Could not create comments table: " . mysql_error() . "<br>");
 	} else {
-		echo "User table created";
+		echo "Comments table created<br>";
 	}
 	
 	// Close the mySQL connection
