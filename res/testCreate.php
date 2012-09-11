@@ -6,6 +6,9 @@
 	if ($result) {
 		echo "Table created";
 	} else {
-		echo "Table not created";
+		die("Could not create table " . mysql_error());
 	}
+	
+	// Close the mySQL connection
+	mysql_close($db_link);
 ?>
