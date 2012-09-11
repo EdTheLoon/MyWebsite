@@ -120,6 +120,7 @@
         <!-- MAIN CONTENT -->
         <section id="main">            
             <section class="post" style="text-align: center;">
+				<header><hgroup><h1>Register</h1><h2>Fill me in</h2></hgroup></header>
                 <?php
                     if (isset($_SESSION["success"]))
                     {
@@ -136,12 +137,11 @@
                     }
                     if ($_SESSION["err"])
                     {
-						echo "<header><h1>Oops!</h1></header><br>" . $_SESSION["err"];
+						echo $_SESSION["err"];
                     }
                     if (!isset($_SESSION["success"]))
                     {
                         ?>
-						<header><hgroup><h1>Register</h1><h2>Use the form below to register</h2></hgroup></header>
                         <form action="/register/" method="post">
                             <input name="username" type="text" placeholder="Username" maxlength="32" /><br>
                             <input name="email" type="email" placeholder="youremail@example.com" maxlength="255" /><br>
