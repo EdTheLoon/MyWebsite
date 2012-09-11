@@ -72,7 +72,7 @@
                     $err[] = "There was a problem sending you a validation link";
                 }
             } else if ($errno == 1062) {
-                $err[] = "Your username or email address is already in use on this site<br>");
+                $err[] = "Your username or email address is already in use on this site<br>";
             }
         }
         
@@ -132,16 +132,16 @@
                                     echo $_SESSION["success"];
                                 ?>
                             </article>
-						<header><hgroup><h1>Register</h1><h2>Use the form below to register</h2></hgroup></header>
                         <?php
                     }
                     if ($_SESSION["err"])
                     {
-                        echo "<br>" . $_SESSION["err"];
+						echo "<header><h1>Oops!</h1></header><br>" . $_SESSION["err"];
                     }
                     if (!isset($_SESSION["success"]))
                     {
                         ?>
+						<header><hgroup><h1>Register</h1><h2>Use the form below to register</h2></hgroup></header>
                         <form action="/register/" method="post">
                             <input name="username" type="text" placeholder="Username" maxlength="32" /><br>
                             <input name="email" type="email" placeholder="youremail@example.com" maxlength="255" /><br>
