@@ -63,7 +63,7 @@
 			You or someone else used your email to register on
 			<a href='www.edtheloon.com'>www.edtheloon.com</a>. In order to
 			use the site you must activate your account by clicking the link
-			below.<br><a href='http://www.edtheloon.com/validate.php?user=$user&key=$key/'>http://www.edtheloon.com/validate/user=$user&key=$key/</a>
+			below.<br><a href='http://www.edtheloon.com/validate/$user/$key/'>http://www.edtheloon.com/validate/$user/$key/</a>
 			<br>If the above link does not work simply copy and paste it into
 			your browser.<br><br>www.edtheloon.com
 			</body>
@@ -126,6 +126,8 @@
 				<?php
                     if (isset($_SESSION['err'])) {
                         echo "<article><header><h1>Oops!</h1></header>" . $_SESSION['err'] . "</article>";
+					} else if (isset($_SESSION['success'])) {
+						echo "<article><header><h1>Success!</h1></header>" . $_SESSION['success'] . "</article>";
                     } else {
                         echo "<article><header><h1>Register</h1></header>Fill me in</article>";
                     }

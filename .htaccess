@@ -4,7 +4,7 @@ RewriteBase /
 RewriteCond %{HTTP_HOST} ^edtheloon.com
 RewriteRule (.*) http://www.edtheloon.com/$1 [R=301]
 Redirect 301 /index.html http://www.edtheloon.com/home/
-RewriteRule ^temporary/?$ index.php [L,NC]
+RewriteRule ^temporary/?$ temp5.html [L,NC]
 RewriteRule ^home/?$ index.php [L,NC]
 RewriteRule ^blog/?$ blog.php [L,NC]
 RewriteRule ^follow/?$ follow.php [L,NC]
@@ -18,4 +18,5 @@ RewriteRule ^edit/users/?$ editusers.php [L,NC]
 RewriteRule ^logout/?$ logout.php [L,NC]
 RewriteRule ^user/[a-z0-9]*/([0-9]*)/?$ user.php?uid=$2 [L,NC]
 RewriteRule ^post/([0-9]+)/?$ post.php?pid=$1 [L,NC]
-RewriteRule ^defaultsite$ temp5.html [L,NC]
+RewriteRule ^validate/([a-z0-9]+)/([a-z0-9]+)/?$ validate.php?user=$1&key=$2 [L,NC]
+RewriteRule ^defaultsite$ index.php [L,NC]

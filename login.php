@@ -14,19 +14,27 @@
 		if ($result) {
 			$row = mysql_fetch_array($result);
 			$pass2 = $row['pass'];
+			$validated = $row['validated'];
 			$uid = $row['uid'];
 			
 			if ($pass == $pass2) {
-				$_SESSION['success'] = "You're now logged in!";
-				header("Location: /home/");
-				exit;
+				if($validated == 1) {
+					$_SESSION['success'] = "You're now logged in!";
+					$_SESSION['uid'] = $uid;
+					header("Location: /home/");
+					exit;
+				} else {
+					$_SESSION['err'] = "You need to activate your account by clicking on the activation link sent to you by email";
+					header("Location: /login/");
+					exit;
+				}
 			} else {
-				$_SESSION['err'] = "Incorrect password";
+				$_SESSION['err'] = "Incorrect username or password";
 				header("Location: /login/");
 				exit;
 			}
 		} else {
-			$_SESSION['err'] = "Incorrect username";
+			$_SESSION['err'] = "Incorrect username or password";
 			header("Location: /login/");
 			exit;
 		}
@@ -69,16 +77,16 @@
                 <?php
                     if (isset($_SESSION['err'])) {
                         echo "<article><header><h1>Oops!</h1></header>" . $_SESSION['err'] . "</article>";
+                    } else if (isset($_SESSION['success'])) {
+						echo "<article><header><h1>Success!</h1></header>" . $_SESSION['success'] . "</article>";
                     } else {
                         echo "<article><header><h1>Login</h1></header>Please login using the form below</article>";
-						echo "Error: " . $_SESSION['err'];
-						echo "<br>Success: " . $_SESSION['success'];
                     }
                 ?>
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                     <input name="username" type="text" placeholder="Username" maxlength="20" /><br>
                     <input name="password" type="password" placeholder="Password" /><br>
-                    <input type="submit" name="submit" value="Login" />
+                    <input type="submit" name="submit" value="Login" style="width: 158px; height: 30px;" />
                 </form>
 				<?php
 					unset($_SESSION['success'], $_SESSION['err']);
