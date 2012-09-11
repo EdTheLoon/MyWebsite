@@ -8,23 +8,26 @@
         $pass = $_POST["password"];
         $email = $_POST["email"];
         $to = $email;
-        $ip = $_SERVER["REMOTE_ADDR"];
+        $ip = ip2long($_SERVER["REMOTE_ADDR"]);
         
         $err = array();
         
-        if (strlen($user) < 1 || strlen($user) > 32)
+        if (strlen($user) < 1 || strlen($user) > 20)
         {
-            $err[] = "Your username must be between 1 and 32 characters";
+            $err[] = "Your username must be between 1 and 20 characters";
+			header("Location: /register/");
         }
         
         if (preg_match("/[^a-z0-9]+/i", $user))
         {
             $err[] = "Your username can only contain letters a-z and numbers 0-9";
+			header("Location: /register/");
         }
         
         if(!preg_match("/^[\.A-z0-9_\-\+]+[@][A-z0-9_\-]+([.][A-z0-9_\-]+)+[A-z]{1,4}$/", $email))
         {
             $err[] = "Your email address is not valid";
+			header("Location: /register/");
         }
         
         $user = mysql_real_escape_string($user);
@@ -42,8 +45,8 @@
                     NOW(),
                     '$key')";
             $result = mysql_query($query, $db_link);
-            
-            if($result) {
+            $errno = mysql_errno($db_link);
+            if ($errno == 0) {
                 $subject = "Confirm Email for www.edtheloon.com";
                 
                 $emailbody = "
@@ -66,10 +69,10 @@
                 {
                     $_SESSION["success"] = "The last step is to confirm your email address. Please check your inbox and spam folders";
                 } else {                    
-                    $err[] = "There was a problem in sending you a validation link";
+                    $err[] = "There was a problem sending you a validation link";
                 }
-            } else {
-                $err[] = "There was a problem adding your data to the database<br>" . mysql_error();
+            } else if ($errno == 1062) {
+                $err[] = "Your username or email address is already in use on this site<br>");
             }
         }
         
@@ -129,16 +132,16 @@
                                     echo $_SESSION["success"];
                                 ?>
                             </article>
+						<header><hgroup><h1>Register</h1><h2>Use the form below to register</h2></hgroup></header>
                         <?php
                     }
                     if ($_SESSION["err"])
                     {
-                        echo "<header><h1>Oops!</h1></header>";
-                        echo $_SESSION["err"];
+                        echo "<br>" . $_SESSION["err"];
                     }
                     if (!isset($_SESSION["success"]))
                     {
-                        ?><header><hgroup><h1>Register</h1><h2>Use the form below to register</h2></hgroup></header>
+                        ?>
                         <form action="/register/" method="post">
                             <input name="username" type="text" placeholder="Username" maxlength="32" /><br>
                             <input name="email" type="email" placeholder="youremail@example.com" maxlength="255" /><br>
