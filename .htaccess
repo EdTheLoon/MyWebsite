@@ -5,7 +5,7 @@ RewriteCond %{HTTP_HOST} ^edtheloon.com
 RewriteRule (.*) http://www.edtheloon.com/$1 [R=301]
 Redirect 301 /index.html http://www.edtheloon.com/home/
 RewriteRule ^temporary/?$ index.php [L,NC]
-RewriteRule ^home/?$ index.php [L,NC]
+RewriteRule ^home/?$ temp5.html [L,NC]
 RewriteRule ^blog/?$ blog.php [L,NC]
 RewriteRule ^follow/?$ follow.php [L,NC]
 RewriteRule ^projects/?$ projects.php [L,NC]
