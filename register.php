@@ -3,46 +3,46 @@
     if (isset($_POST['submit'])) {
         require_once "res/db_config.php";
         unset($_SESSION['success'], $_SESSION['err']);
-        
+
         $user = $_POST['username'];
         $pass = $_POST['password'];
 		$confirmpass = $_POST['confirmpassword'];
         $email = $_POST['email'];
         $to = $email;
         $ip = ip2long($_SERVER['REMOTE_ADDR']);
-        
+
         if (strlen($user) < 1 || strlen($user) > 20)
         {
             $_SESSION['err'] = "Your username must be between 1 and 20 characters";
 			header("Location: /register/");
 			exit;
         }
-        
+
         if (preg_match("/[^a-z0-9]+/i", $user))
         {
             $_SESSION['err'] = "Your username can only contain letters a-z and numbers 0-9";
 			header("Location: /register/");
 			exit;
         }
-        
+
         if(!preg_match("/^[\.A-z0-9_\-\+]+[@][A-z0-9_\-]+([.][A-z0-9_\-]+)+[A-z]{1,4}$/", $email))
         {
             $_SESSION['err'] = "Your email address is not valid";
 			header("Location: /register/");
 			exit;
         }
-		
+
 		if($pass != $confirmpass) {
 			$_SESSION['err'] = "Your passwords did not match!";
 			header("Location: /register/");
 			exit;
 		}
-        
+
         $user = mysql_real_escape_string($user);
         $email = mysql_real_escape_string($email);
         $pass = md5($pass, false);
         $key = substr(md5($pass, false),0,6);
-        
+
 		$query = "INSERT INTO users (user, pass, email, ip, dt, validkey) VALUES (
 				'$user',
 				'$pass',
@@ -52,10 +52,10 @@
 				'$key')";
 		$result = mysql_query($query, $db_link);
 		$errno = mysql_errno($db_link);
-		
+
 		if ($errno == 0) {
 			$subject = "Confirm Email for www.edtheloon.com";
-			
+
 			$emailbody = "
 			<html>
 			<head><title>Confirm your email address</title></head>
@@ -68,22 +68,41 @@
 			your browser.<br><br>www.edtheloon.com
 			</body>
 			</html>";
-					  
+
 			$headers = "MIME-Version: 1.0" . "\r\n";
 			$headers = $headers . "Content-type:text/html;charset=iso-8859-1" . "\r\n";
 			$headers = $headers . "From: Ed the Loon <noreply@edtheloon.com>" . "\r\n";
 			if (mail($to, $subject, $emailbody, $headers))
 			{
 				$_SESSION['success'] = "The last step is to confirm your email address. Please check your inbox and spam folders";
-				header("Location: /login/");
-				exit;
-			} else {                    
+			} else {
 				$_SESSION['err'] = "There was a problem sending you a validation link";
 			}
+
+			$subject = "A new user has registered!";
+
+			$emailbody = "
+			<html>
+			<head><title>A new user has registered!</title></head>
+			<body>
+			A new user has registered on your website! <br>
+			<br>
+			Username: $user<br>
+			Email: $to<br>
+			IP: $ip
+			Date and Time: " . date("d/m/y") . "
+			</body>
+			</html>";
+
+			$headers = "MIME-Version: 1.0" . "\r\n";
+			$headers = $headers . "Content-type:text/html;charset=iso-8859-1" . "\r\n";
+			$headers = $headers . "From: Ed the Loon <noreply@edtheloon.com>" . "\r\n";
+			mail($to, $subject, $emailbody, $headers);
+
 		} else if ($errno == 1062) {
 			$_SESSION['err'] = "Your username or email address is already in use on this site<br>";
-		}      
-        
+		}
+
         header("Location: /register/");
         exit;
     }
@@ -98,7 +117,7 @@
 <body>
     <?php include "top.php"; ?>
 	<!-- MAIN CONTENT -->
-	<section id="main">            
+	<section id="main">
 		<section class="post" style="text-align: center;">
 			<?php
 				if (isset($_SESSION['err'])) {
@@ -131,13 +150,13 @@
 				el.value = el.defaultValue;
 			}
 		}
-		
+
 		function onBlur(el) {
 			if (el.value=='') {
 				el.value = el.defaultValue;
 			}
 		}
-		
+
 		function validateForm() {
 			var user = document.getElementsByName("username").item(0).value;
 			var email = document.getElementsByName("email").item(0).value;
