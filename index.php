@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Ed the Loon [DOT] com</title>
+    <title>Edj the Loon [DOT] com</title>
     <link rel="stylesheet" href="/stylesheets/default.css" type="text/css">
 </head>
 <body>
@@ -24,8 +24,8 @@
 						read the blog posts, add your comments should you have any, change your password
 						or whatever else it is you want to do!<br>
 						<br>
-						This site is still under heavy development so if you notice any bugs or have any 
-						suggestions then please feel free to <a href="">Contact Me</a> so that I can 
+						This site is still under heavy development so if you notice any bugs or have any
+						suggestions then please feel free to <a href="">Contact Me</a> so that I can
 						resolve any issues and continue to improve my website!<br>
 						<br>
 						Thanks!
@@ -48,6 +48,6 @@
 		</section>
 	</section>
 	<!-- END OF MAIN CONTENT -->
-	<?php include "rest.php" ?>    
+	<?php include "rest.php" ?>
 </body>
 </html>
