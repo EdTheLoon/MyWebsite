@@ -79,7 +79,7 @@
 				$_SESSION['err'] = "There was a problem sending you a validation link";
 			}
 
-			$to = ""ed@edtheloon.com";
+			$to = "ed@edtheloon.com";
 			$subject = "A new user has registered!";
 
 			$emailbody = "
@@ -90,7 +90,7 @@
 			<br>
 			Username: $user<br>
 			Email: $to<br>
-			IP: $ip
+			IP: $ip<br>
 			Date and Time: " . date("d/m/y") . "
 			</body>
 			</html>";
@@ -99,6 +99,8 @@
 			$headers = $headers . "Content-type:text/html;charset=iso-8859-1" . "\r\n";
 			$headers = $headers . "From: Ed the Loon <noreply@edtheloon.com>" . "\r\n";
 			mail($to, $subject, $emailbody, $headers);
+			header("Location: /login/");
+			exit;
 
 		} else if ($errno == 1062) {
 			$_SESSION['err'] = "Your username or email address is already in use on this site<br>";
