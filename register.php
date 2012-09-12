@@ -79,6 +79,7 @@
 				$_SESSION['err'] = "There was a problem sending you a validation link";
 			}
 
+			$to = ""ed@edtheloon.com";
 			$subject = "A new user has registered!";
 
 			$emailbody = "
