@@ -2,7 +2,8 @@
     session_start();
 	session_destroy();
 	session_start();
-	$_SESSION['success'] = "You're now logged out! Come back soon!";
+	$_SESSION['success_title'] = "Goodbye!";
+	$_SESSION['success_content'] = "You're now logged out! Come back soon!";
 	header("Location: /success/");
 ?>
 <!DOCTYPE html>
