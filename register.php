@@ -90,10 +90,10 @@
 				Date and Time: " . date("d/m/y") . "
 				</body>
 				</html>";
-
 				$headers = "MIME-Version: 1.0" . "\r\n";
 				$headers = $headers . "Content-type:text/html;charset=iso-8859-1" . "\r\n";
 				$headers = $headers . "From: Ed the Loon <noreply@edtheloon.com>" . "\r\n";
+
 				mail($to, $subject, $emailbody, $headers);
 				header("Location: /login/");
 				exit;
