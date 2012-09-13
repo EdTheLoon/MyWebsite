@@ -24,7 +24,7 @@
 								<hr>
 								You're user has been successfully activated and
 								you're now logged in! You can now enjoy the
-								benefits of being a registered user!c
+								benefits of being a registered user!
 							</article>
 						</section>
 					<?php
