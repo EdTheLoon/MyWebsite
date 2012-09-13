@@ -33,7 +33,7 @@
             $query = "UPDATE users SET validated=1 WHERE uid=$uid";
             $result = mysql_query($query, $db_link);
             if ($result) {
-                $_SESSION['success'] = "You're email address is validated! You've been automatically logged in and can now use the site!";
+                $_SESSION['success'] = "validated";
             	$_SESSION['uid'] = $uid;
 
             	// Get users permissions
