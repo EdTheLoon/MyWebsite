@@ -13,7 +13,7 @@
 	<section id="main">
 		<?php
 			if (isset($_SESSION['success'])) {
-				if($_SESSION['success'] = "You're email address is validated! You've been automatically logged in and can now use the site!")
+				if($_SESSION['success'] = "validated")
 				{
 					?>
 					<section class="post">
