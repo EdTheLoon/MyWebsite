@@ -7,7 +7,7 @@
     <title></title>
     <link rel="stylesheet" href="/stylesheets/default.css" type="text/css">
 </head>
-<body>
+<body>a
 	<?php include "top.php"; ?>
 	<!-- MAIN CONTENT -->
 	<section id="main">
@@ -23,7 +23,7 @@
 	</section>
 	<!-- END OF MAIN CONTENT -->
 	<?php include "rest.php"; ?>
-	
+
     <!-- JAVASCRIPT -->
     <script type="text/javascript">
         function hideComments() {
@@ -37,7 +37,7 @@
             var el = document.getElementById(elid);
             if (el.style.display == 'none')
             {
-                el.style.display = 'block';                
+                el.style.display = 'block';
             } else {
                 el.style.display = 'none';
             }
