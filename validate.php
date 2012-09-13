@@ -33,7 +33,11 @@
             $query = "UPDATE users SET validated=1 WHERE uid=$uid";
             $result = mysql_query($query, $db_link);
             if ($result) {
-                $_SESSION['success'] = "validated";
+                $_SESSION['success_title'] = "User validated!";
+            	$_SESSION['success_content'] = 'You\'re user has been validated!
+					You can now enjoy the benefits of being a registered user!
+					Most of the things you will be using can be found in the
+					sidebar to the right.<br><br>Thanks for registering!';
             	$_SESSION['uid'] = $uid;
 
             	// Get users permissions
@@ -46,7 +50,7 @@
             	$_SESSION['addcomment'] = $row['addcomment'];
             	$_SESSION['editcomment'] = $row['editcomment'];
 
-                header("Location: /home/");
+                header("Location: /success/");
             	exit;
             } else {
                 die("Oops! " . mysql_error());

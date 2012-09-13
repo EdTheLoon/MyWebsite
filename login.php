@@ -3,25 +3,27 @@
 	if (isset($_POST['submit'])) {
 		require_once "res/db_config.php";
 		unset($_SESSION['err'], $_SESSION['success']);
-		
+
 		// Retrieve information from posted form
 		$user = mysql_real_escape_string($_POST['username']);
 		$pass = md5($_POST['password'], false);
-		
+
 		$query = "SELECT uid, user, pass, validated FROM users WHERE user = '$user'";
 		$result = mysql_query($query, $db_link);
-		
+
 		if ($result) {
 			$row = mysql_fetch_array($result);
 			$pass2 = $row['pass'];
 			$validated = $row['validated'];
 			$uid = $row['uid'];
-			
+
 			if ($pass == $pass2) {
 				if($validated == 1) {
-					$_SESSION['success'] = "You're now logged in!";
+					$_SESSION['success_title'] = "Welcome back, $user!";
+					$_SESSION['success_content'] = 'You\'re now logged in!
+						Thank you for coming to visit again!';
 					$_SESSION['uid'] = $uid;
-					
+
 					// Get users permissions
 					$query = "SELECT edituser, addpost, editpost, addcomment, editcomment FROM users WHERE uid = '$uid'";
 					$result = mysql_query($query);
@@ -31,8 +33,8 @@
 					$_SESSION['editpost'] = $row['editpost'];
 					$_SESSION['addcomment'] = $row['addcomment'];
 					$_SESSION['editcomment'] = $row['editcomment'];
-					
-					header("Location: /home/");
+
+					header("Location: /success/");
 					exit;
 				} else {
 					$_SESSION['err'] = "You need to activate your account by clicking on the activation link sent to you by email";
@@ -81,7 +83,7 @@
 			?>
 		</section>
 	</section>
-	<!-- END OF MAIN CONTENT -->  
+	<!-- END OF MAIN CONTENT -->
 	<?php include "rest.php" ?>
 </body>
 </html>

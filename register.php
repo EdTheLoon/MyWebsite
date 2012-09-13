@@ -74,7 +74,13 @@
 			$headers = $headers . "From: Ed the Loon <noreply@edtheloon.com>" . "\r\n";
 			if (mail($to, $subject, $emailbody, $headers))
 			{
-				$_SESSION['success'] = "The last step is to confirm your email address. Please check your inbox and spam folders";
+				$_SESSION['success_title'] = "Nearly there!";
+				$_SESSION['success_content'] = 'There\'s only one more thing left
+					to do before! We have sent you an email containing an
+					activation link that you must click on. If you cannot find it
+					make sure to check your spam folders! Alternatively, you can
+					contact me to sort it out although this <strong>will</strong>
+					take longer';
 
 				$to = "ed@edtheloon.com";
 				$subject = "A new user has registered!";
@@ -95,7 +101,7 @@
 				$headers = $headers . "From: Ed the Loon <noreply@edtheloon.com>" . "\r\n";
 
 				mail($to, $subject, $emailbody, $headers);
-				header("Location: /login/");
+				header("Location: /success/");
 				exit;
 			} else {
 				$_SESSION['err'] = "There was a problem sending you a validation link";
