@@ -14,8 +14,7 @@
 		<?php
 			if (isset($_SESSION['success'])) {
 				if($_SESSION['success'] = "validated")
-				{
-					?>
+				{ ?>
 					<section class="post">
 							<article>
 								<header>
@@ -26,11 +25,9 @@
 								you're now logged in! You can now enjoy the
 								benefits of being a registered user!
 							</article>
-						</section>
-					<?php
-				} else {
-					?>
-					<section class="post">
+						</section> <?php
+				} ?>
+				<section class="post">
 					<article>
 						<header>
 							<h1>You are now logged in.</h1>
@@ -45,10 +42,8 @@
 						resolve any issues and continue to improve my website!<br>
 						<br>
 						Thanks!
-						</article>
-					</section>
-					<?php
-				}
+					</article>
+				</section> <?php
 			}
 		?>
 		<section class="post">
