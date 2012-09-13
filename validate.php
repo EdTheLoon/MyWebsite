@@ -46,6 +46,8 @@
             	$_SESSION['addcomment'] = $row['addcomment'];
             	$_SESSION['editcomment'] = $row['editcomment'];
 
+            	// TEST COMMENT
+
                 header("Location: /home/");
             } else {
                 die("Oops! " . mysql_error());
