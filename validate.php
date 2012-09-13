@@ -10,7 +10,7 @@
         $key = substr($key,0,6);
     }
     require "res/db_config.php";
-    
+
     $query = "SELECT validkey, uid FROM users WHERE user = '$user'";
     $result = mysql_query($query, $db_link);
     if (!$result)
@@ -21,21 +21,33 @@
         $row = mysql_fetch_array($result);
         $dbkey = $row['validkey'];
         $uid = $row['uid'];
-        
-        
+
+
         // DEBUG
         //echo "UID: '$uid' | ";
         //echo "User: '$user' | ";
         //echo "Key: '$key' | ";
         //echo "Real Key: '$dbkey'";
-        
+
         if ($dbkey == $key) {
             $query = "UPDATE users SET validated=1 WHERE uid=$uid";
             $result = mysql_query($query, $db_link);
             if ($result) {
-                $_SESSION['success'] = "You're email address is validated! You
-                                        can now login and use the site!";
-                header("Location: /login/");
+                $_SESSION['success'] = "You're email address is validated! You've been automatically logged in and can now use the site!";
+            	$_SESSION['uid'] = $uid;
+
+            	// Get users permissions
+            	$query = "SELECT edituser, addpost, editpost, addcomment, editcomment FROM users WHERE uid = '$uid'";
+            	$result = mysql_query($query);
+            	$row = mysql_fetch_array($result);
+            	$_SESSION['edituser'] = $row['edituser'];
+            	$_SESSION['addpost'] = $row['addpost'];
+            	$_SESSION['editpost'] = $row['editpost'];
+            	$_SESSION['addcomment'] = $row['addcomment'];
+            	$_SESSION['editcomment'] = $row['editcomment'];
+
+                header("Location: /home/");
+            	exit;
             } else {
                 die("Oops! " . mysql_error());
             }

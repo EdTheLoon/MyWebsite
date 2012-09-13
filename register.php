@@ -90,17 +90,16 @@
 				Date and Time: " . date("d/m/y") . "
 				</body>
 				</html>";
-
 				$headers = "MIME-Version: 1.0" . "\r\n";
 				$headers = $headers . "Content-type:text/html;charset=iso-8859-1" . "\r\n";
 				$headers = $headers . "From: Ed the Loon <noreply@edtheloon.com>" . "\r\n";
+
 				mail($to, $subject, $emailbody, $headers);
 				header("Location: /login/");
 				exit;
 			} else {
 				$_SESSION['err'] = "There was a problem sending you a validation link";
 			}
-
 		} else if ($errno == 1062) {
 			$_SESSION['err'] = "Your username or email address is already in use on this site<br>";
 		}
