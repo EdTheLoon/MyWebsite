@@ -75,31 +75,32 @@
 			if (mail($to, $subject, $emailbody, $headers))
 			{
 				$_SESSION['success'] = "The last step is to confirm your email address. Please check your inbox and spam folders";
-
-				$to = "ed@edtheloon.com";
-				$subject = "A new user has registered!";
-				$emailbody = "
-				<html>
-				<head><title>A new user has registered!</title></head>
-				<body>
-				A new user has registered on your website! <br>
-				<br>
-				Username: $user<br>
-				Email: $to<br>
-				IP: $ip<br>
-				Date and Time: " . date("d/m/y") . "
-				</body>
-				</html>";
-
-				$headers = "MIME-Version: 1.0" . "\r\n";
-				$headers = $headers . "Content-type:text/html;charset=iso-8859-1" . "\r\n";
-				$headers = $headers . "From: Ed the Loon <noreply@edtheloon.com>" . "\r\n";
-				mail($to, $subject, $emailbody, $headers);
-				header("Location: /login/");
-				exit;
 			} else {
 				$_SESSION['err'] = "There was a problem sending you a validation link";
 			}
+
+			$to = "ed@edtheloon.com";
+			$subject = "A new user has registered!";
+
+			$emailbody = "
+			<html>
+			<head><title>A new user has registered!</title></head>
+			<body>
+			A new user has registered on your website! <br>
+			<br>
+			Username: $user<br>
+			Email: $to<br>
+			IP: $ip<br>
+			Date and Time: " . date("d/m/y") . "
+			</body>
+			</html>";
+
+			$headers = "MIME-Version: 1.0" . "\r\n";
+			$headers = $headers . "Content-type:text/html;charset=iso-8859-1" . "\r\n";
+			$headers = $headers . "From: Ed the Loon <noreply@edtheloon.com>" . "\r\n";
+			mail($to, $subject, $emailbody, $headers);
+			header("Location: /login/");
+			exit;
 
 		} else if ($errno == 1062) {
 			$_SESSION['err'] = "Your username or email address is already in use on this site<br>";
