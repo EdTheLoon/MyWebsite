@@ -7,7 +7,7 @@
     <title></title>
     <link rel="stylesheet" href="/stylesheets/default.css" type="text/css">
 </head>
-<body>a
+<body>
 	<?php include "top.php"; ?>
 	<!-- MAIN CONTENT -->
 	<section id="main">
