@@ -13,8 +13,24 @@
 	<section id="main">
 		<?php
 			if (isset($_SESSION['success'])) {
-			?>
-				<section class="post">
+				if($_SESSION['success'] = "You're email address is validated! You've been automatically logged in and can now use the site!")
+				{
+					?>
+					<section class="post">
+							<article>
+								<header>
+									<h1>User activated!</h1>
+								</header>
+								<hr>
+								You're user has been successfully activated and
+								you're now logged in! You can now enjoy the
+								benefits of being a registered user!
+							</article>
+						</section>
+					<?php
+				} else {
+					?>
+					<section class="post">
 					<article>
 						<header>
 							<h1>You are now logged in.</h1>
@@ -29,9 +45,10 @@
 						resolve any issues and continue to improve my website!<br>
 						<br>
 						Thanks!
-					</article>
-				</section>
-			<?php
+						</article>
+					</section>
+					<?php
+				}
 			}
 		?>
 		<section class="post">
@@ -42,7 +59,7 @@
 				<hr>
 				Welcome to my website! This is the third site I'm constructing
 				entirely by hand! If you happen to stumble across this site
-				then please bare with my as there may be bugs and it doesn't
+				then please bare with me as there may be bugs and it doesn't
 				yet have full functionality!<br><br><h2>Thank you!</h2>
 			</article>
 		</section>
