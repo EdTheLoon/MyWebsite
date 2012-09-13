@@ -11,46 +11,6 @@
     <?php include "top.php"; ?>
 	<!-- MAIN CONTENT -->
 	<section id="main">
-		<?php
-			if (isset($_SESSION['success'])) {
-				if($_SESSION['success'] = "validated")
-				{
-					?>
-					<section class="post">
-							<article>
-								<header>
-									<h1>User activated!</h1>
-								</header>
-								<hr>
-								You're user has been successfully activated and
-								you're now logged in! You can now enjoy the
-								benefits of being a registered user!
-							</article>
-						</section>
-					<?php
-				} else {
-					?>
-					<section class="post">
-					<article>
-						<header>
-							<h1>You are now logged in.</h1>
-						</header>
-						<hr>
-						You have successfully logged into my website. Feel free to take a look around,
-						read the blog posts, add your comments should you have any, change your password
-						or whatever else it is you want to do!<br>
-						<br>
-						This site is still under heavy development so if you notice any bugs or have any
-						suggestions then please feel free to <a href="">Contact Me</a> so that I can
-						resolve any issues and continue to improve my website!<br>
-						<br>
-						Thanks!
-						</article>
-					</section>
-					<?php
-				}
-			}
-		?>
 		<section class="post">
 			<article>
 				<header>

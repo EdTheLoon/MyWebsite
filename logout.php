@@ -2,8 +2,9 @@
     session_start();
 	session_destroy();
 	session_start();
-	$_SESSION['success'] = "You're now logged out! Come back soon!";
-	header("Location: /login/");
+	$_SESSION['success_title'] = "Goodbye!";
+	$_SESSION['success_content'] = "You're now logged out! Come back soon!";
+	header("Location: /success/");
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,16 +15,16 @@
 <body>
     <!-- WRAPPER -->
     <section id="wrap">
-        
+
         <!-- BANNER -->
         <section id="banner">
             <header>
                 <h2>Banner</h2>
             </header>
-            <p>A banner graphic goes here</p>  
+            <p>A banner graphic goes here</p>
         </section>
         <!-- END OF BANNER -->
-        
+
         <!-- NAVIGATION -->
         <nav id="nav">
             <ul>
@@ -35,13 +36,13 @@
             </ul>
         </nav>
         <!-- END OF NAVIGATION -->
-        
+
         <!-- MAIN CONTENT -->
         <section id="main">
-            
+
         </section>
         <!-- END OF MAIN CONTENT -->
-        
+
         <!-- SIDEBAR -->
         <section id="sidebar">
             <!-- USER CONTROLS -->
@@ -60,7 +61,7 @@
                 </ul>
             </nav>
             <!-- END OF USER CONTROLS -->
-            
+
             <!-- WHO IS ONLINE -->
             <div class="sidebox">
                 <header>
@@ -74,7 +75,7 @@
                 </ul>
             </div>
             <!-- END OF WHO IS ONLINE -->
-            
+
             <!-- ADVERTISEMENT -->
             <div class="sidebox" style="height: 600px;">
                 <header>
@@ -85,13 +86,13 @@
             <!-- END OF ADVERTISEMENT -->
         </section>
         <!-- END OF SIDEBAR -->
-        
+
         <!-- FOOTER -->
         <footer id="footer">
 			Some copyright stuff | Ed the Loon | 2012
 		</footer>
         <!-- END OF FOOTER -->
-        
+
     </section>
     <!-- END OF WRAPPER -->
 </body>
