@@ -100,7 +100,6 @@
 			} else {
 				$_SESSION['err'] = "There was a problem sending you a validation link";
 			}
-
 		} else if ($errno == 1062) {
 			$_SESSION['err'] = "Your username or email address is already in use on this site<br>";
 		}
