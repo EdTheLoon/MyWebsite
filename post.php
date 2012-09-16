@@ -20,7 +20,7 @@
 					<input name="title" type="text" placeholder="Title of your post" maxlength="50" width="620" /><br>
 				</header>
 				<hr>
-				<input name="content" id="content" type="text" placeholder="Your post's content" widht="620" /><br>
+				<textarea id="content" type="text" ></textarea><br>
 				<input name="submit" type="submit" value="Add Post" />
 			</form>
 			</article>
@@ -45,7 +45,7 @@
 		footer: true,
 		fonts: ['Verdana','Arial','Georgia','Trebuchet MS'],
 		xhtml: true,
-		cssfile: 'tinyeditor.css',
+		cssfile: '/tinyeditor/tinyeditor.css',
 		bodyid: 'editor',
 		footerclass: 'tinyeditor-footer',
 		toggle: {text: 'source', activetext: 'wysiwyg', cssclass: 'toggle'},
