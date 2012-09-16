@@ -135,6 +135,7 @@
 					echo "<article><header><h1>Register</h1></header>Fill me in</article>";
 				}
 			?>
+			<hr>
 			<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 				<input name="username" type="text" placeholder="Username" maxlength="32" /><br>
 				<input name="email" type="email" placeholder="youremail@example.com" maxlength="255" /><br>
