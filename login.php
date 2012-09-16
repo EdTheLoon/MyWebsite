@@ -73,6 +73,7 @@
 					echo "<article><header><h1>Login</h1></header>Please login using the form below</article>";
 				}
 			?>
+			<hr>
 			<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 				<input name="username" type="text" placeholder="Username" maxlength="20" /><br>
 				<input name="password" type="password" placeholder="Password" /><br>
