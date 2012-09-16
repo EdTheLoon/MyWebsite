@@ -6,8 +6,8 @@
 <head>
     <title></title>
     <link rel="stylesheet" href="/stylesheets/default.css" type="text/css">
-    <link rel="stylesheet" href="tinyeditor.css" type="text/css">
-    <script src="tiny.editorpacked.js"></script>
+    <link rel="stylesheet" href="/tinyeditor.css" type="text/css">
+    <script src="/tiny.editor.packed.js"></script>
 </head>
 <body>
 	<?php include "top.php"; ?>
@@ -20,11 +20,11 @@
 					<input name="title" type="text" placeholder="Title of your post" maxlength="50" style="width: 620px;" /><br>
 				</header>
 				<hr>
-				<textarea name="content" id="content" style="width: 620px; height: 310px;" ></textarea><br>
+				<textarea name="content" id="content" style="width: 620px; height: 310px; padding-left: 10px;" ></textarea><br>
 				<script>
 					var editor = new TINY.editor.edit('editor', {
 					id: 'content',
-					width: 620,
+					width: 637,
 					height: 310,
 					cssclass: 'tinyeditor',
 					controlclass: 'tinyeditor-control',
