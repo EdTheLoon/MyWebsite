@@ -2,7 +2,7 @@
     session_start();
 	if (isset($_POST['submit'])) {
 		require_once "res/db_config.php";
-		unset($_SESSION['err'], $_SESSION['success']);
+		unset($_SESSION['success_title'], $_SESSION['success_content'], $_SESSION['err']);
 
 		// Retrieve information from posted form
 		$user = mysql_real_escape_string($_POST['username']);

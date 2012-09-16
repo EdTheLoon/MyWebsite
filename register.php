@@ -2,7 +2,7 @@
     session_start();
     if (isset($_POST['submit'])) {
         require_once "res/db_config.php";
-        unset($_SESSION['success'], $_SESSION['err']);
+        unset($_SESSION['success_title'], $_SESSION['success_content'], $_SESSION['err']);
 
         $user = $_POST['username'];
         $pass = $_POST['password'];
