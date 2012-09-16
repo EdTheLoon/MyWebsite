@@ -13,11 +13,14 @@
 	<section id="main">
 		<section class="post">
 			<article>
+			<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" style="text-align: center;">
 				<header>
-					<h1>Title</h1>
+					<input name="title" type="text" placeholder="Title of your post" maxlength="50" /><br>
 				</header>
 				<hr>
-				Content
+				<input name="content" type="text" placeholder="Your post's content" /><br>
+				<input name="submit" type="submit" value="Add Post" />
+			</form>
 			</article>
 		</section>
 	</section>
