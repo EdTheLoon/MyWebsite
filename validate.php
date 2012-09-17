@@ -1,7 +1,7 @@
 <?php
     // RewriteRule ^validate/([a-z0-9]+)/([a-z0-9]+)/?$ validate.php?user=$1&key=$2 [L,NC]
     session_start();
-    unset ($_SESSION['err'], $_SESSION['success']);
+    unset($_SESSION['success_title'], $_SESSION['success_content'], $_SESSION['err']);
     $user = $_GET['user'];
     $user = $_REQUEST['user'];
     $key = $_GET['key'];
