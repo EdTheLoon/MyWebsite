@@ -1,5 +1,32 @@
 <?php
-session_start();
+	session_start();
+	require_once "res/db_config.php";
+	if (isset($_GET['pid'])) {
+		$pid = $_GET['pid'];
+	} else {
+		$query = "SELECT pid FROM posts ORDER BY pid DESC LIMIT 1";
+		$result = mysql_query($query, $db_link);
+		$row = mysql_fetch_array($result);
+		$pid = $row['pid'];
+	}
+
+	$query = "SELECT posts.title, posts.content, posts.date
+	FROM posts
+	WHERE posts.pid = $pid
+	LIMIT 1";
+	$result = mysql_query($query, $db_link);
+	$errno = mysql_errno($db_link);
+
+	if ($errno != 0) {
+		$_SESSION['err'] = "Unknown error<br>" . mysql_error();
+		header("Location: /failed/");
+	} else {
+		$row = mysql_fetch_array($result);
+		$puid = $row['uid'];
+		$title = $row['title'];
+		$content = $row['content'];
+		$date = $row['date'];
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,10 +41,10 @@ session_start();
 		<section class="post">
 			<article>
 				<header>
-					<h1>Title</h1>
+					<h1><?php echo $title; ?></h1>
 				</header>
 				<hr>
-				Content
+				<?php echo $content; ?>
 			</article>
 		</section>
 	</section>

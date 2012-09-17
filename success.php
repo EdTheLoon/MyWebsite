@@ -22,6 +22,9 @@ session_start();
 		</section>
 	</section>
 	<!-- END OF MAIN CONTENT -->
-    <?php include "rest.php"; ?>
+    <?php
+    	include "rest.php";
+    	unset($_SESSION['success_title'], $_SESSION['success_content']);
+	?>
 </body>
 </html>

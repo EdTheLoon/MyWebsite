@@ -1,32 +1,43 @@
 <?php
-session_start();
+	session_start();
+	require_once "res/db_config.php";
 
-if (!isset($_SESSION['uid'])) {
-	$_SESSION['err'] = "You need to be logged in to submit a new post!";
-	header("Location: /login/");
-} else if ($_SESSION['addpost'] == 0) {
-	$_SESSION['err'] = "You don't have permission to add posts!";
-	header("Location: /failed/");
-} else if (isset($_POST['submit'])) {
-	require_once("res/db_config.php");
-	unset($_SESSION['success_title'], $_SESSION['success_content'], $_SESSION['err']);
+	if (!isset($_SESSION['uid'])) {
+		$_SESSION['err'] = "You need to be logged in to submit a new post!";
+		header("Location: /login/");
+	} else if ($_SESSION['addpost'] == 0) {
+		$_SESSION['err'] = "You don't have permission to add posts!";
+		header("Location: /failed/");
+	} else if (isset($_POST['submit'])) {
+		require_once("res/db_config.php");
+		unset($_SESSION['success_title'], $_SESSION['success_content'], $_SESSION['err']);
 
-	// Grab the session and form variables being used to post this item
-	$uid = $_SESSION['uid'];
-	$title = $_POST['title'];
-	$content = $_POST['content'];
+		// Grab the session and form variables being used to post this item
+		$uid = $_SESSION['uid'];
+		$title = $_POST['title'];
+		$content = $_POST['content'];
 
-	$query = "INSERT INTO posts (uid, title, content, date) VALUES (
-		    	'$uid',
-		    	'$title',
-		    	'$content'
-		    	NOW()";
-	$result = mysql_query($query, $db_link);
-	$errno = mysql_errno($db_link);
+		$query = "INSERT INTO posts (uid, date, title, content) VALUES (
+					$uid,
+			    	NOW(),
+			    	'$title',
+			    	'$content')";
+		$result = mysql_query($query, $db_link);
+		$errno = mysql_errno($db_link);
 
-	if ($errno == 0) {
-
-	}
+		if ($errno == 0) {
+			$query = "SELECT pid FROM posts WHERE uid='$uid'";
+			$result = mysql_query($query, $db_link);
+			$row = mysql_fetch_array($result);
+			$pid = $row['pid'];
+	    	$_SESSION['success_title'] = "You're post was added!";
+			$_SESSION['success_content'] = "You're post has been added.<br>
+			<a href='/post/$pid/'>Click here to see it</a>";
+			header("Location: /success/");
+		} else {
+			$_SESSION['err'] = "Unknown error...<br>" . mysql_error();
+			header("Location: /failed/");
+		}
 }
 ?>
 <!DOCTYPE html>

@@ -128,14 +128,13 @@
 		<section class="post" style="text-align: center;">
 			<?php
 				if (isset($_SESSION['err'])) {
-					echo "<article><header><h1>Oops!</h1></header>" . $_SESSION['err'] . "</article>";
+					echo "<article><header><h1>Oops!</h1></header><hr>" . $_SESSION['err'] . "</article>";
 				} else if (isset($_SESSION['success'])) {
-					echo "<article><header><h1>Success!</h1></header>" . $_SESSION['success'] . "</article>";
+					echo "<article><header><h1>Success!</h1></header><hr>" . $_SESSION['success'] . "</article>";
 				} else {
-					echo "<article><header><h1>Register</h1></header>Fill me in</article>";
+					echo "<article><header><h1>Register</h1></header><hr>Fill me in</article>";
 				}
 			?>
-			<hr>
 			<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 				<input name="username" type="text" placeholder="Username" maxlength="32" /><br>
 				<input name="email" type="email" placeholder="youremail@example.com" maxlength="255" /><br>
