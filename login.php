@@ -2,7 +2,7 @@
     session_start();
 	if (isset($_POST['submit'])) {
 		require_once "res/db_config.php";
-		unset($_SESSION['err'], $_SESSION['success']);
+		unset($_SESSION['success_title'], $_SESSION['success_content'], $_SESSION['err']);
 
 		// Retrieve information from posted form
 		$user = mysql_real_escape_string($_POST['username']);
@@ -66,19 +66,19 @@
 		<section class="post" style="text-align: center;">
 			<?php
 				if (isset($_SESSION['err'])) {
-					echo "<article><header><h1>Oops!</h1></header>" . $_SESSION['err'] . "</article>";
+					echo "<article><header><h1>Oops!</h1></header><hr>" . $_SESSION['err'] . "</article>";
 				} else if (isset($_SESSION['success'])) {
-					echo "<article><header><h1>Success!</h1></header>" . $_SESSION['success'] . "</article>";
+					echo "<article><header><h1>Success!</h1></header><hr>" . $_SESSION['success'] . "</article>";
 				} else {
-					echo "<article><header><h1>Login</h1></header>Please login using the form below</article>";
+					echo "<article><header><h1>Login</h1></header><hr>Please login using the form below</article>";
 				}
 			?>
-			<hr>
 			<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 				<input name="username" type="text" placeholder="Username" maxlength="20" /><br>
 				<input name="password" type="password" placeholder="Password" /><br>
 				<input type="submit" name="submit" value="Login" style="width: 158px; height: 30px;" />
 			</form>
+			Don't have an account? <a href="/register/">Create one here!</a>
 			<?php
 				unset($_SESSION['success'], $_SESSION['err']);
 			?>
