@@ -107,13 +107,18 @@ hr
 	margin: 0 0 0 10px;
 }
 
+.post #info {
+	font-size: 14px;
+	margin-bottom: 2px;
+}
+
 .comments
 {
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 10px;
     background: #60AFFF;
-    padding: 0 10px 0 10px;    
+    padding: 0 10px 0 10px;
     clear: both;
     display: block;
 }
