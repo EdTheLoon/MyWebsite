@@ -30,10 +30,7 @@
 			$result = mysql_query($query, $db_link);
 			$row = mysql_fetch_array($result);
 			$pid = $row['pid'];
-	    	$_SESSION['success_title'] = "You're post was added!";
-			$_SESSION['success_content'] = "You're post has been added.<br>
-			<a href='/post/$pid/'>Click here to see it</a>";
-			header("Location: /success/");
+			header("Location: /post/$pid/");
 		} else {
 			$_SESSION['err'] = "Unknown error...<br>" . mysql_error();
 			header("Location: /failed/");
