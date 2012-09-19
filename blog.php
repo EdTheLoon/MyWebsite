@@ -13,14 +13,14 @@
 	if ($page == 1) {
 		$startat = 0;
 	} else {
-		$startat = ($page-1)*10;
+		$startat = ($page-1)*5;
 	}
 	// Grab post details
 	$query = "SELECT posts.pid, posts.title, posts.content, posts.date, users.user, users.uid
 		FROM posts, users
 		WHERE posts.uid = users.uid
 		ORDER BY date DESC
-		LIMIT 10";
+		LIMIT $startat,5";
 	$result = mysql_query($query, $db_link);
 	$errno = mysql_errno($db_link);
 
