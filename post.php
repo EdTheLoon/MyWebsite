@@ -50,7 +50,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title><?php echo "$title - $author"; ?></title>
     <link rel="stylesheet" href="/stylesheets/default.css" type="text/css">
 </head>
 <body>
