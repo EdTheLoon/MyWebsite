@@ -15,6 +15,12 @@
 	} else {
 		$startat = ($page-1)*5;
 	}
+
+	// For the purposes of paging, see how many rows we have in our database
+	$query = "SELECT pid FROM posts;";
+	$result = mysql_query($query, $db_link);
+	$numposts = mysql_num_rows($result);
+
 	// Grab post details
 	$query = "SELECT posts.pid, posts.title, posts.content, posts.date, users.user, users.uid
 		FROM posts, users
@@ -62,7 +68,28 @@
 	<?php include "top.php"; ?>
 	<!-- MAIN CONTENT -->
 	<section id="main">
+			<!-- BLOG POSTS -->
 			<?php echo $posts; ?>
+
+			<!-- PAGE BAR (if there is one) -->
+			<div style="text-align: center;">Page Navigation<br>
+				<?php
+					$maxPage = ceil($numposts/5);
+					$pagelinks = "";
+					if ($numposts > 5) {
+						if ($page > 1) {
+							$pagelinks = $pagelinks . "<a href=\"/blog/" . ($page-1) . "/\">Newer</a>";
+						}
+						if (($page < $maxPage) && ($page> 1)) {
+							$pagelinks = $pagelinks . " | ";
+						}
+						if ($page < $maxPage) {
+							$pagelinks = $pagelinks . "<a href=\"/blog/" . ($page+1) . "/\">Older</a>";
+						}
+						echo $pagelinks . "<br><br>";
+					}
+				?>
+			</div>
 	</section>
 	<!-- END OF MAIN CONTENT -->
 	<?php include "rest.php"; ?>
