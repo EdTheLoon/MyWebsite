@@ -1,25 +1,68 @@
 <?php
     session_start();
+	require_once "res/db_config.php";
+
+	// Check to see if we're fetching a certain page
+	if(isset($_GET['page'])) {
+		$page = $_GET['page'];
+	} else {
+		$page = 1;
+	}
+
+	// Do the maths to calculate our starting point for posts
+	if ($page == 1) {
+		$startat = 0;
+	} else {
+		$startat = ($page-1)*10;
+	}
+	// Grab post details
+	$query = "SELECT posts.pid, posts.title, posts.content, posts.date, users.user, users.uid
+		FROM posts, users
+		WHERE posts.uid = users.uid
+		ORDER BY date DESC
+		LIMIT 10";
+	$result = mysql_query($query, $db_link);
+	$errno = mysql_errno($db_link);
+
+	if ($errno != 0) {
+		$_SESSION['err'] = "Unknown error<br>" . mysql_error();
+		header("Location: /failed/");
+		exit;
+	} else {
+		$posts = "";
+		while($row = mysql_fetch_array($result)){
+			$puid = $row['uid'];
+			$ppid = $row['pid'];
+			$author = $row['user'];
+			$title = $row['title'];
+			$content = $row['content'];
+			$date = $row['date'];
+
+			$posts = $posts . "
+			<section class=\"post\">
+				<article>
+				<header>
+					<h1><a href=\"/post/$ppid/\">$title</a></h1><div id=\"info\">Posted on $date by <a href=\"#\">$author</a></div>
+				</header>
+				<hr>
+				$content
+				</article>
+			</section>
+			";
+		}
+	}
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>Blog</title>
     <link rel="stylesheet" href="/stylesheets/default.css" type="text/css">
 </head>
 <body>
 	<?php include "top.php"; ?>
 	<!-- MAIN CONTENT -->
 	<section id="main">
-		<section class="post">
-			<article>
-				<header>
-					<h1>Title</h1>
-				</header>
-				<hr>
-				Content
-			</article>
-		</section>
+			<?php echo $posts; ?>
 	</section>
 	<!-- END OF MAIN CONTENT -->
 	<?php include "rest.php"; ?>
