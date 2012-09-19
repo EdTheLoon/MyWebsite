@@ -7,6 +7,7 @@ Redirect 301 /index.html http://www.edtheloon.com/home/
 RewriteRule ^temporary/?$ temp5.html [L,NC]
 RewriteRule ^home/?$ index.php [L,NC]
 RewriteRule ^blog/?$ blog.php [L,NC]
+RewriteRule ^blog/([0-9]+)/?$ blog.php?page=$1 [L,NC]
 RewriteRule ^follow/?$ follow.php [L,NC]
 RewriteRule ^projects/?$ projects.php [L,NC]
 RewriteRule ^about/?$ about.php [L,NC]

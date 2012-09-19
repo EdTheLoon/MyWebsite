@@ -2,6 +2,19 @@
     session_start();
 	require_once "res/db_config.php";
 
+	// Check to see if we're fetching a certain page
+	if(isset($_GET['page'])) {
+		$page = $_GET['page'];
+	} else {
+		$page = 1;
+	}
+
+	// Do the maths to calculate our starting point for posts
+	if ($page == 1) {
+		$startat = 0;
+	} else {
+		$startat = ($page-1)*10;
+	}
 	// Grab post details
 	$query = "SELECT posts.pid, posts.title, posts.content, posts.date, users.user, users.uid
 		FROM posts, users
