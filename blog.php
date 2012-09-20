@@ -1,6 +1,7 @@
 <?php
     session_start();
 	require_once "res/db_config.php";
+	require_once "res/bbcode.php";
 
 	// Check to see if we're fetching a certain page
 	if(isset($_GET['page'])) {
@@ -42,7 +43,11 @@
 			$author = $row['user'];
 			$title = $row['title'];
 			$content = $row['content'];
-			$date = $row['date'];
+			$content = bbcode::tohtml($content,TRUE); // Convert BBCode to HTML
+			$content = stripslashes($content);
+			$content = str_replace("&nbsp;", " " , $content);
+			$datetime = strtotime($row['date']);
+			$date = date("j/m/y \a\\t H:i", $datetime);
 
 			$posts = $posts . "
 			<section class=\"post\">

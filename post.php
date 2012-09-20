@@ -1,6 +1,8 @@
 <?php
 	session_start();
 	require_once "res/db_config.php";
+	require_once "res/bbcode.php";
+
 	if (isset($_GET['pid'])) {
 		$pid = $_GET['pid'];
 	} else {
@@ -30,7 +32,13 @@
 		$author = $row['user'];
 		$title = $row['title'];
 		$content = $row['content'];
-		$date = $row['date'];
+		$datetime = strtotime($row['date']);
+		$date = date("j/m/y \a\\t H:i", $datetime);
+
+		// Convert BBCode to HTML
+		$content = bbcode::tohtml($content,TRUE);
+		$content = stripslashes($content);
+		$content = str_replace("&nbsp;", " " , $content);
 	}
 
 	// Grab post comments
