@@ -14,10 +14,10 @@
 		<section class="post">
 			<article>
 				<header>
-					<h1>Title</h1>
+					<h1>Website Project</h1>
 				</header>
 				<hr>
-				Content
+				This project is the very website you're looking at now!
 			</article>
 		</section>
 	</section>
