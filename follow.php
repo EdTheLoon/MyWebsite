@@ -14,10 +14,10 @@
 		<section class="post">
 			<article>
 				<header>
-					<h1>Title</h1>
+					<h1>Follow me!</h1>
 				</header>
 				<hr>
-				Content
+				I'll add some links in later :)
 			</article>
 		</section>
 	</section>
