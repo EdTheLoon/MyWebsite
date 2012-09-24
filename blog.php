@@ -45,7 +45,7 @@
 			$content = $row['content'];
 			$content = bbcode::tohtml($content,TRUE); // Convert BBCode to HTML
 			$content = stripslashes($content);
-			$content = str_replace("&nbsp;", " " , $content);
+			$content = html_entity_decode($content);
 			$datetime = strtotime($row['date']);
 			$date = date("j/m/y \a\\t H:i", $datetime);
 

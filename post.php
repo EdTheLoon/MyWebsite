@@ -38,7 +38,7 @@
 		// Convert BBCode to HTML
 		$content = bbcode::tohtml($content,TRUE);
 		$content = stripslashes($content);
-		$content = str_replace("&nbsp;", " " , $content);
+		$content = html_entity_decode($content);
 	}
 
 	// Grab post comments
