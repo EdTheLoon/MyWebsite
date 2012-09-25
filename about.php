@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>About Ed the Loon</title>
     <link rel="stylesheet" href="/stylesheets/default.css" type="text/css">
 </head>
 <body>

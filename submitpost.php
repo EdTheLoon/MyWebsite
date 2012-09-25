@@ -40,7 +40,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>Add a blog post</title>
     <link rel="stylesheet" href="/stylesheets/default.css" type="text/css">
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <link rel="stylesheet" href="/sceditor/minified/jquery.sceditor.min.css" type="text/css" media="all" />

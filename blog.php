@@ -66,7 +66,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Blog</title>
+    <title>Ed the Loon's Blog</title>
     <link rel="stylesheet" href="/stylesheets/default.css" type="text/css">
 </head>
 <body>

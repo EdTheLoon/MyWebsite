@@ -53,7 +53,10 @@
                 header("Location: /success/");
             	exit;
             } else {
-                die("Oops! " . mysql_error());
+            	$errno = mysql_errno($db_link);
+                $_SESSION['err'] = "Unknown error ($errno)<br>" . mysql_error();
+            	header("Location: /failed/");
+            	exit;
             }
         }
     }

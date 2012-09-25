@@ -118,7 +118,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>Register</title>
     <link rel="stylesheet" href="/stylesheets/default.css" type="text/css">
 </head>
 <body>
