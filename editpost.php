@@ -32,7 +32,10 @@
 		}
 
 		// If all the checks are fine then update the post
-		$query = "";
+		$title = htmlentities($_POST['title']);
+		$content = addslashes($_POST['content']);
+		$query = "UPDATE posts SET title='$title', content='$content'
+					WHERE pid=$pid";
 		$result = mysql_query($query, $db_link);
 		$errno = mysql_errno($db_link);
 		if ($errno == 0) {
@@ -82,13 +85,42 @@
 		}
 
 		// If all the checks above go through fine then we can load the post details
+		$query = "SELECT title, content FROM posts WHERE pid=$pid";
+		$result = mysql_query($query, $db_link);
+		$errno = mysql_errno($db_link);
+		if ($errno == 0) {
+			$row = mysql_fetch_array($result);
+			$title = $row['title'];
+			$content = $row['content'];
+		} else {
+			$_SESSION['err'] = "Unknown error ($errno)<br>" . mysql_error();
+			header("Location: /failed/");
+			exit;
+		}
 	}
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>Edit Post - <?php echo $title; ?></title>
     <link rel="stylesheet" href="/stylesheets/default.css" type="text/css">
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="/sceditor/minified/jquery.sceditor.min.css" type="text/css" media="all" />
+	<script type="text/javascript" src="/sceditor/minified/jquery.sceditor.min.js"></script>
+	<script type="text/javascript" src="/sceditor/languages/en.js"></script>
+	<script>
+	$(document).ready(function() {
+		$("textarea").sceditorBBCodePlugin({
+			locale: "en-GB",
+			emoticonsCompat: true,
+			resizeMinWidth: 638,
+			resizeMinHeight: 270,
+			resizeMaxWidth: 638,
+			resizeMaxHeight: -1,
+			dateFormat: "day-month-year",
+		});
+	});
+</script>
 </head>
 <body>
 	<?php include "top.php"; ?>
@@ -96,11 +128,14 @@
 	<section id="main">
 		<section class="post">
 			<article>
+				<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" style="text-align: center;">
 				<header>
-					<h1>Title</h1>
+					<input name="title" type="text" value="<?php echo $title; ?>" placeholder="Title of your post" maxlength="50" style="width: 636px;" /><br>
 				</header>
 				<hr>
-				Content
+				<textarea name="content" id="content" style="width: 638px; height: 270px; padding-left: 10px;" ><?php echo $content; ?></textarea>
+				<input name="submit" type="submit" value="Add Post" />
+			</form>
 			</article>
 		</section>
 	</section>
