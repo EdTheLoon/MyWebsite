@@ -15,7 +15,7 @@
 		// Grab the session and form variables being used to post this item
 		$uid = $_SESSION['uid'];
 		$title = htmlentities($_POST['title']);
-		$content = $_POST['content'];
+		$content = addslashes($_POST['content']);
 
 		$query = "INSERT INTO posts (uid, date, title, content) VALUES (
 					$uid,

@@ -11,6 +11,14 @@
 			exit;
 		}
 
+		// Check that the user is logged in
+		if(!isset($_SESSION['uid'])) {
+			$_SESSION['err'] = "You need to be logged in to do that!<br>
+								<a href=\"/login/\">Login here</a>";
+			header("Location: /failed/");
+			exit;
+		}
+
 		// Retrieve the PID provided
 		$pid = $_POST['pid'];
 
@@ -78,7 +86,7 @@
 			exit;
 		}
 		// Finally check if the user editing is the post's original author
-		if(!$_SESSION['uid'] != $puid) {
+		if($_SESSION['uid'] != $puid) {
 			$_SESSION['err'] = "You cannot edit a post that is not yours!";
 			header("Location: /failed/");
 			exit;
@@ -142,7 +150,7 @@
 				<hr>
 				<textarea name="content" id="content" style="width: 638px; height: 270px; padding-left: 10px;" ><?php echo $content; ?></textarea>
 				<input type="hidden" name="pid" value="<?php echo $pid; ?>" />
-				<input name="submit" type="submit" value="Add Post" />
+				<input name="submit" type="submit" value="Update Post" />
 			</form>
 			</article>
 		</section>
