@@ -11,7 +11,7 @@ session_start();
 	<?php include "top.php"; ?>
     <!-- MAIN CONTENT -->
 	<section id="main">
-		<section class="post">
+		<section class="post" style="text-align: center;">
 			<article>
 				<header>
 					<h1>Oops!</h1>
@@ -22,6 +22,9 @@ session_start();
 		</section>
 	</section>
 	<!-- END OF MAIN CONTENT -->
-    <?php include "rest.php"; ?>
+    <?php
+    	include "rest.php";
+    	unset($_SESSION['err']);
+    ?>
 </body>
 </html>
