@@ -25,7 +25,7 @@
 			$_SESSION['err'] = "Unknown error ($errno)<br>" . mysql_error();
 		}
 		// Finally check if the user editing is the post's original author
-		if(!$_SESSION['uid'] == $puid) {
+		if($_SESSION['uid'] != $puid) {
 			$_SESSION['err'] = "You cannot ediot a post that is not yours!";
 			header("Location: /failed/");
 			exit;
@@ -54,6 +54,14 @@
 			exit;
 		}
 
+		// Check that the user is logged in
+		if(!isset($_SESSION['uid'])) {
+			$_SESSION['err'] = "You need to be logged in to do that!<br>
+								<a href=\"/login/\">Login here</a>";
+			header("Location: /failed/");
+			exit;
+		}
+
 		// Retrieve the PID provided
 		$pid = $_GET['pid'];
 
@@ -70,16 +78,15 @@
 			exit;
 		}
 		// Finally check if the user editing is the post's original author
-		if(!$_SESSION['uid'] == $puid) {
-			$_SESSION['err'] = "You cannot ediot a post that is not yours!";
+		if(!$_SESSION['uid'] != $puid) {
+			$_SESSION['err'] = "You cannot edit a post that is not yours!";
 			header("Location: /failed/");
 			exit;
 		}
 
 		// Check that the user can edit this post if it's not their own
-		if ($_SESSION['editpost'] == 0) {
-			$_SESSION['err'] = "You need to be logged in to do that!<br>
-								<a href=\"/login/\">Login here</a>";
+		if (($_SESSION['editpost'] == 0) && ($_SESSION['uid'] != $puid)) {
+			$_SESSION['err'] = "You don't have the authority to do that!";
 			header("Location: /failed/");
 			exit;
 		}
@@ -134,6 +141,7 @@
 				</header>
 				<hr>
 				<textarea name="content" id="content" style="width: 638px; height: 270px; padding-left: 10px;" ><?php echo $content; ?></textarea>
+				<input type="hidden" name="pid" value="<?php echo $pid; ?>" />
 				<input name="submit" type="submit" value="Add Post" />
 			</form>
 			</article>

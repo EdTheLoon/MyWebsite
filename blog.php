@@ -23,7 +23,7 @@
 	$numposts = mysql_num_rows($result);
 
 	// Grab post details
-	$query = "SELECT posts.pid, posts.title, posts.content, posts.date, users.user, users.uid
+	$query = "SELECT posts.pid, posts.title, posts.content, posts.date, users.user, posts.uid
 		FROM posts, users
 		WHERE posts.uid = users.uid
 		ORDER BY date DESC
@@ -49,6 +49,13 @@
 			$datetime = strtotime($row['date']);
 			$date = date("j/m/y \a\\t H:i", $datetime);
 
+			$editdelete = "";
+			if ($_SESSION['uid'] == $puid) {
+				$editdelete = "<p style=\"text-align:right; font-size:10px;\"><a href=\"/edit/post/$ppid/\">[EDIT]</a> | <a href=\"/delete/post/$ppid\"> [DELETE]</a></p>";
+			} else if ($_SESSION['editpost'] == 1) {
+				$editdelete = "<p style=\"text-align:right; font-size:10px;\"><a href=\"/edit/post/$ppid/\">[EDIT]</a> | <a href=\"/delete/post/$ppid\"> [DELETE]</a></p>";
+			}
+
 			$posts = $posts . "
 			<section class=\"post\">
 				<article>
@@ -56,7 +63,7 @@
 					<h1><a href=\"/post/$ppid/\">$title</a></h1><div id=\"info\">Posted on $date by <a href=\"#\">$author</a></div>
 				</header>
 				<hr>
-				$content
+				$content $editdelete
 				</article>
 			</section>
 			";
