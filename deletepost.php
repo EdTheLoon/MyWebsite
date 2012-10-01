@@ -44,8 +44,8 @@
 	$result = mysql_query($query, $db_link);
 	$errno = mysql_errno($db_link);
 	if ($errno == 0) {
-		$_SESSION['success_title'] = "";
-		$_SESSION['success_content'] = "";
+		$_SESSION['success_title'] = "Post deleted";
+		$_SESSION['success_content'] = "Post $pid was deleted!";
 		header("Location: /success/");
 		exit;
 	} else {
