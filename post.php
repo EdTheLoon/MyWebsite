@@ -78,9 +78,9 @@ $query = "SELECT users.uid, users.user, date, content
 				<?php
 					echo $content;
 					if ($_SESSION['uid'] == $puid) {
-						echo "<p style=\"text-align:right; font-size:10px;\"><a href=\"/edit/post/$ppid/\">[EDIT]</a> | <a href=\"/delete/post/$ppid\"> [DELETE]</a></p>";
+						echo "<p style=\"text-align:right; font-size:10px;\"><a href=\"/edit/post/$ppid/\">[EDIT]</a> | <a href=\"/delete/post/$ppid/\"> [DELETE]</a></p>";
 					} else if ($_SESSION['editpost'] == 1) {
-						echo "<p style=\"text-align:right; font-size:10px;\"><a href=\"/edit/post/$ppid/\">[EDIT]</a> | <a href=\"/delete/post/$ppid\"> [DELETE]</a></p>";
+						echo "<p style=\"text-align:right; font-size:10px;\"><a href=\"/edit/post/$ppid/\">[EDIT]</a> | <a href=\"/delete/post/$ppid/\"> [DELETE]</a></p>";
 					}
 				?>
 			</article>

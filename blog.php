@@ -51,9 +51,9 @@
 
 			$editdelete = "";
 			if ($_SESSION['uid'] == $puid) {
-				$editdelete = "<p style=\"text-align:right; font-size:10px;\"><a href=\"/edit/post/$ppid/\">[EDIT]</a> | <a href=\"/delete/post/$ppid\"> [DELETE]</a></p>";
+				$editdelete = "<p style=\"text-align:right; font-size:10px;\"><a href=\"/edit/post/$ppid/\">[EDIT]</a> | <a href=\"/delete/post/$ppid/\"> [DELETE]</a></p>";
 			} else if ($_SESSION['editpost'] == 1) {
-				$editdelete = "<p style=\"text-align:right; font-size:10px;\"><a href=\"/edit/post/$ppid/\">[EDIT]</a> | <a href=\"/delete/post/$ppid\"> [DELETE]</a></p>";
+				$editdelete = "<p style=\"text-align:right; font-size:10px;\"><a href=\"/edit/post/$ppid/\">[EDIT]</a> | <a href=\"/delete/post/$ppid/\"> [DELETE]</a></p>";
 			}
 
 			$posts = $posts . "
