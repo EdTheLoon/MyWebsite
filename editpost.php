@@ -34,14 +34,17 @@
 		}
 		// Finally check if the user editing is the post's original author
 		if($_SESSION['uid'] != $puid) {
-			$_SESSION['err'] = "You cannot ediot a post that is not yours!";
-			header("Location: /failed/");
-			exit;
+			if($_SESSION['editpost'] == 0) {
+				$_SESSION['err'] = "You cannot edit a post that is not yours!";
+				header("Location: /failed/");
+				exit;
+			}
 		}
 
 		// If all the checks are fine then update the post
 		$title = htmlentities($_POST['title']);
 		$content = addslashes($_POST['content']);
+		$content = htmlentities($content);
 		$query = "UPDATE posts SET title='$title', content='$content'
 					WHERE pid=$pid";
 		$result = mysql_query($query, $db_link);
@@ -87,9 +90,11 @@
 		}
 		// Finally check if the user editing is the post's original author
 		if($_SESSION['uid'] != $puid) {
-			$_SESSION['err'] = "You cannot edit a post that is not yours!";
-			header("Location: /failed/");
-			exit;
+			if($_SESSION['editpost'] == 0) {
+				$_SESSION['err'] = "You cannot edit a post that is not yours!";
+				header("Location: /failed/");
+				exit;
+			}
 		}
 
 		// Check that the user can edit this post if it's not their own
@@ -106,7 +111,8 @@
 		if ($errno == 0) {
 			$row = mysql_fetch_array($result);
 			$title = $row['title'];
-			$content = $row['content'];
+			$content = stripslashes($row['content']);
+			$content = html_entity_decode($content);
 		} else {
 			$_SESSION['err'] = "Unknown error ($errno)<br>" . mysql_error();
 			header("Location: /failed/");
