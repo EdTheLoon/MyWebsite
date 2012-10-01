@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!isset($_SESSION['err'])) {
+	$_SESSION['err'] = "Something went wrong!";
+}
 ?>
 <!DOCTYPE html>
 <html>
