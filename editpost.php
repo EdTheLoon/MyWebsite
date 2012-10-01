@@ -4,17 +4,17 @@
 
 	// Check if we're updating a post or showing the editor...
 	if(isset($_POST['submit'])) {
-		// Check that a PID was provided
-		if(!isset($_POST['pid'])) {
-			$_SESSION['err'] = "You didn't specify a post to edit!";
-			header("Location: /failed/");
-			exit;
-		}
-
 		// Check that the user is logged in
 		if(!isset($_SESSION['uid'])) {
 			$_SESSION['err'] = "You need to be logged in to do that!<br>
 								<a href=\"/login/\">Login here</a>";
+			header("Location: /failed/");
+			exit;
+		}
+
+		// Check that a PID was provided
+		if(!isset($_POST['pid'])) {
+			$_SESSION['err'] = "You didn't specify a post to edit!";
 			header("Location: /failed/");
 			exit;
 		}
@@ -58,17 +58,17 @@
 			exit;
 		}
 	} else {
-		// Check that a PID was provided
-		if(!isset($_GET['pid'])) {
-			$_SESSION['err'] = "You didn't specify a post to edit!";
-			header("Location: /failed/");
-			exit;
-		}
-
 		// Check that the user is logged in
 		if(!isset($_SESSION['uid'])) {
 			$_SESSION['err'] = "You need to be logged in to do that!<br>
 								<a href=\"/login/\">Login here</a>";
+			header("Location: /failed/");
+			exit;
+		}
+
+		// Check that a PID was provided
+		if(!isset($_GET['pid'])) {
+			$_SESSION['err'] = "You didn't specify a post to edit!";
 			header("Location: /failed/");
 			exit;
 		}
