@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>About Ed the Loon</title>
     <link rel="stylesheet" href="/stylesheets/default.css" type="text/css">
 </head>
 <body>
@@ -30,13 +30,13 @@
 					<h1>About Ed the Loon</h1>
 				</header>
 				<hr>
-				I am just an average guy that likes to programme in my own spare time. I have knowledge of .NET, 
+				I am just an average guy that likes to programme in my own spare time. I have knowledge of .NET,
 				Java, PHP, mySQL and some small knowledge of C# and C++.
 				<br>
 				<br>
-				I studied HNC Computing: Software Development at Aberdeen College and passed with 100% in my exam. 
-				I did go onto do a HND in Computing: Software Development but later decided that computing was not
-				what I wanted to do with my career and dropped out. I am now a Team Leader in a highly resputable
+				I studied HNC Computing: Software Development at Aberdeen College and passed with 100% in my exam.
+				I did go on to do a HND in Computing: Software Development but later decided that computing was not
+				what I wanted to do with my career and dropped out. I am now a Team Leader in a highly reputable
 				catalogue sales store.
 			</article>
 		</section>

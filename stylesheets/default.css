@@ -12,11 +12,9 @@ header, footer, aside, nav, article
 a {
     color: #074481;
     text-decoration: none;
-    font-weight: normal;
 }
 a:hover {
     color: #FFFFFF;
-    font-weight: bold;
 }
 hr
 {
@@ -100,6 +98,7 @@ hr
 {
 	font-size: 30px;
 	margin: 0;
+	color: #074481;
 }
 .post h2
 {

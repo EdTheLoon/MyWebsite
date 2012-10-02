@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>Logged out!</title>
     <link rel="stylesheet" href="/stylesheets/default.css" type="text/css">
 </head>
 <body>

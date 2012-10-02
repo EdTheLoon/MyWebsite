@@ -14,8 +14,8 @@
 
 		// Grab the session and form variables being used to post this item
 		$uid = $_SESSION['uid'];
-		$title = $_POST['title'];
-		$content = $_POST['content'];
+		$title = htmlentities($_POST['title']);
+		$content = addslashes($_POST['content']);
 
 		$query = "INSERT INTO posts (uid, date, title, content) VALUES (
 					$uid,
@@ -26,14 +26,11 @@
 		$errno = mysql_errno($db_link);
 
 		if ($errno == 0) {
-			$query = "SELECT pid FROM posts WHERE uid='$uid'";
+			$query = "SELECT pid FROM posts WHERE uid='$uid' ORDER BY date DESC LIMIT 1";
 			$result = mysql_query($query, $db_link);
 			$row = mysql_fetch_array($result);
 			$pid = $row['pid'];
-	    	$_SESSION['success_title'] = "You're post was added!";
-			$_SESSION['success_content'] = "You're post has been added.<br>
-			<a href='/post/$pid/'>Click here to see it</a>";
-			header("Location: /success/");
+			header("Location: /post/$pid/");
 		} else {
 			$_SESSION['err'] = "Unknown error...<br>" . mysql_error();
 			header("Location: /failed/");
@@ -43,10 +40,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>Add a blog post</title>
     <link rel="stylesheet" href="/stylesheets/default.css" type="text/css">
-    <link rel="stylesheet" href="/tinyeditor.css" type="text/css">
-    <script src="/tiny.editor.packed.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="/sceditor/minified/jquery.sceditor.min.css" type="text/css" media="all" />
+	<script type="text/javascript" src="/sceditor/minified/jquery.sceditor.min.js"></script>
+	<script type="text/javascript" src="/sceditor/languages/en.js"></script>
+	<script>
+	$(document).ready(function() {
+		$("textarea").sceditorBBCodePlugin({
+			locale: "en-GB",
+			emoticonsCompat: true,
+			resizeMinWidth: 638,
+			resizeMinHeight: 270,
+			resizeMaxWidth: 638,
+			resizeMaxHeight: -1,
+			dateFormat: "day-month-year",
+		});
+	});
+</script>
 </head>
 <body>
 	<?php include "top.php"; ?>
@@ -56,33 +68,11 @@
 			<article>
 			<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" style="text-align: center;">
 				<header>
-					<input name="title" type="text" placeholder="Title of your post" maxlength="50" style="width: 620px;" /><br>
+					<input name="title" type="text" placeholder="Title of your post" maxlength="50" style="width: 636px;" /><br>
 				</header>
 				<hr>
-				<textarea name="content" id="content" style="width: 620px; height: 310px; padding-left: 10px;" ></textarea><br>
-				<script>
-					var editor = new TINY.editor.edit('editor', {
-					id: 'content',
-					width: 637,
-					height: 310,
-					cssclass: 'tinyeditor',
-					controlclass: 'tinyeditor-control',
-					rowclass: 'tinyeditor-header',
-					dividerclass: 'tinyeditor-divider',
-					controls: ['bold', 'italic', 'underline', 'strikethrough', '|', 'subscript', 'superscript', '|',
-						'orderedlist', 'unorderedlist', '|', 'outdent', 'indent', '|', 'leftalign',
-						'centeralign', 'rightalign', 'blockjustify', '|', 'unformat', '|', 'undo', 'redo', 'n',
-						'font', 'size', 'style', '|', 'image', 'hr', 'link', 'unlink', '|', 'print'],
-					footer: true,
-					fonts: ['Verdana','Arial','Georgia','Trebuchet MS'],
-					xhtml: true,
-					bodyid: 'editor',
-					footerclass: 'tinyeditor-footer',
-					toggle: {text: 'source', activetext: 'wysiwyg', cssclass: 'toggle'},
-					resize: {cssclass: 'resize'}
-				});
-				</script>
-				<input name="submit" type="submit" value="Add Post" onclick="editor.post();" />
+				<textarea name="content" id="content" style="width: 638px; height: 270px; padding-left: 10px;" ></textarea>
+				<input name="submit" type="submit" value="Add Post" />
 			</form>
 			</article>
 		</section>

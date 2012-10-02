@@ -12,7 +12,7 @@ session_start();
     <!-- MAIN CONTENT -->
 	<section id="main">
 		<section class="post">
-			<article>
+			<article style="text-align: center;">
 				<header>
 					<h1><?php echo $_SESSION['success_title']; ?></h1>
 				</header>
