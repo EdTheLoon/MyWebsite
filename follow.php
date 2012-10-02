@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>Follow Ed the Loon</title>
     <link rel="stylesheet" href="/stylesheets/default.css" type="text/css">
 </head>
 <body>
@@ -14,10 +14,10 @@
 		<section class="post">
 			<article>
 				<header>
-					<h1>Title</h1>
+					<h1>Follow me!</h1>
 				</header>
 				<hr>
-				Content
+				I'll add some links in later :)
 			</article>
 		</section>
 	</section>
